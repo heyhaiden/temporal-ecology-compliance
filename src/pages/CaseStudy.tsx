@@ -1,4 +1,3 @@
-
 const CaseStudy = () => {
   return (
     <div className="py-24 sm:py-32">
@@ -8,7 +7,7 @@ const CaseStudy = () => {
             Case Studies
           </h2>
           <p className="mt-4 text-lg leading-8 text-gray-600">
-            Learn how organizations are achieving their biodiversity goals with StreamLine.
+            Learn how organizations are achieving their biodiversity goals with Temporal.
           </p>
           <div className="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
             {caseStudies.map((study) => (
@@ -32,10 +31,10 @@ const CaseStudy = () => {
                   </div>
                   <div className="group relative max-w-xl">
                     <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900">
-                      <a href={study.href}>
+                      <Link to={study.href}>
                         <span className="absolute inset-0" />
                         {study.title}
-                      </a>
+                      </Link>
                     </h3>
                     <p className="mt-5 text-sm leading-6 text-gray-600">{study.description}</p>
                   </div>
@@ -52,7 +51,7 @@ const CaseStudy = () => {
 const caseStudies = [
   {
     title: "Sustainable Housing Development in Surrey",
-    href: "#",
+    href: "/case-study/housing-development",
     description: "How a major housing developer achieved 15% biodiversity net gain through strategic planning and monitoring.",
     date: "Mar 16, 2024",
     category: "Case Study",
@@ -60,7 +59,7 @@ const caseStudies = [
   },
   {
     title: "Infrastructure Project Success in Yorkshire",
-    href: "#",
+    href: "/case-study/infrastructure-project",
     description: "Implementing real-time biodiversity monitoring across a major infrastructure project spanning multiple sites.",
     date: "Mar 10, 2024",
     category: "Case Study",

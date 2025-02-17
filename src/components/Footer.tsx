@@ -7,8 +7,12 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <Link to="/" className="text-lg font-semibold text-emerald-600">
-              StreamLine
+            <Link to="/" className="flex items-center">
+              <img
+                src="/lovable-uploads/242c82b9-1801-4d36-b154-c2134253ae1e.png"
+                alt="Temporal"
+                className="h-8 w-auto"
+              />
             </Link>
             <p className="text-sm text-gray-600">
               Making environmental compliance simple and efficient.
@@ -19,11 +23,6 @@ const Footer = () => {
             <h3 className="font-medium text-gray-900 mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="text-sm text-gray-600 hover:text-emerald-600">
-                  About Us
-                </Link>
-              </li>
-              <li>
                 <Link to="/solutions" className="text-sm text-gray-600 hover:text-emerald-600">
                   Solutions
                 </Link>
@@ -31,6 +30,11 @@ const Footer = () => {
               <li>
                 <Link to="/case-study" className="text-sm text-gray-600 hover:text-emerald-600">
                   Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link to="/resources" className="text-sm text-gray-600 hover:text-emerald-600">
+                  Resources
                 </Link>
               </li>
               <li>
@@ -82,7 +86,7 @@ const Footer = () => {
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200">
           <p className="text-sm text-gray-600 text-center">
-            © {new Date().getFullYear()} StreamLine. All rights reserved.
+            © {new Date().getFullYear()} Temporal. All rights reserved.
           </p>
         </div>
       </div>

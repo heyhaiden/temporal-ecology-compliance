@@ -19,7 +19,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-xl font-semibold text-emerald-600">Temporal</span>
+            <img
+              src="/lovable-uploads/242c82b9-1801-4d36-b154-c2134253ae1e.png"
+              alt="Temporal"
+              className="h-8 w-auto"
+            />
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -73,13 +77,13 @@ const Navbar = () => {
             </NavigationMenu>
 
             <Link
-              to="/resources"
+              to="/pricing"
               className={cn(
                 "text-sm font-medium transition-colors hover:text-emerald-600",
-                location.pathname === "/resources" ? "text-emerald-600" : "text-gray-600"
+                location.pathname === "/pricing" ? "text-emerald-600" : "text-gray-600"
               )}
             >
-              Resources
+              Pricing
             </Link>
             
             <Link
@@ -94,9 +98,9 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <Link to="/pricing">
+            <Link to="/auth">
               <Button variant="ghost" className="text-sm font-medium text-gray-600 hover:text-emerald-600">
-                Pricing
+                Login
               </Button>
             </Link>
             <Link to="/contact">
