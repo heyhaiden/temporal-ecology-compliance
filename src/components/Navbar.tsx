@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -7,8 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
-import { Camera, FileCheck } from "lucide-react";
+import { ChevronDown, Camera, FileCheck, Signal } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -36,7 +36,7 @@ const Navbar = () => {
             
             <DropdownMenu>
               <DropdownMenuTrigger className={cn(
-                "text-sm font-medium transition-colors hover:text-emerald-600 flex items-center",
+                "text-sm font-medium transition-colors hover:text-emerald-600 flex items-center [data-state=open]:text-emerald-600",
                 location.pathname.includes("/solutions") ? "text-emerald-600" : "text-gray-600"
               )}>
                 Solutions <ChevronDown className="ml-1 h-4 w-4" />
@@ -44,7 +44,7 @@ const Navbar = () => {
               <DropdownMenuContent className="w-56 bg-white">
                 <DropdownMenuItem>
                   <Link to="/solutions/habitat-monitoring" className="w-full flex items-center space-x-2 py-2">
-                    <Camera className="h-5 w-5 text-emerald-600" />
+                    <Signal className="h-5 w-5 text-emerald-600" />
                     <div>
                       <p className="font-medium">Habitat Monitoring</p>
                       <p className="text-xs text-gray-500">Real-time habitat tracking</p>

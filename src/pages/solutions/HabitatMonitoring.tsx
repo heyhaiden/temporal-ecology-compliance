@@ -1,8 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { ArrowRight, Camera, Wifi, Database, BarChart, Check } from "lucide-react";
+import { ArrowRight, Signal, Wifi, Database, BarChart, Check } from "lucide-react";
 
 const HabitatMonitoring = () => {
   return (
@@ -96,9 +95,9 @@ const howItWorks = [
 
 const features = [
   {
-    name: "High-Resolution Imaging",
-    description: "24/7 monitoring with advanced camera systems that capture detailed habitat changes while respecting wildlife.",
-    icon: Camera,
+    name: "Real-Time Monitoring",
+    description: "24/7 monitoring with advanced sensor systems that capture detailed habitat changes while respecting wildlife.",
+    icon: Signal,
   },
   {
     name: "Real-Time Connectivity",
