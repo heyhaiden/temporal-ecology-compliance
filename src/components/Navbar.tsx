@@ -2,6 +2,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -27,15 +34,26 @@ const Navbar = () => {
               Home
             </Link>
             
-            <Link
-              to="/solutions"
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-emerald-600",
-                location.pathname === "/solutions" ? "text-emerald-600" : "text-gray-600"
-              )}
-            >
-              Solutions
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger className={cn(
+                "text-sm font-medium transition-colors hover:text-emerald-600 flex items-center",
+                location.pathname.includes("/solutions") ? "text-emerald-600" : "text-gray-600"
+              )}>
+                Solutions <ChevronDown className="ml-1 h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>
+                  <Link to="/solutions/habitat-monitoring" className="w-full">
+                    Habitat Monitoring
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link to="/solutions/compliance-reporting" className="w-full">
+                    Compliance Reporting
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             <Link
               to="/pricing"
