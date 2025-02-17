@@ -1,4 +1,3 @@
-
 import { CircleDollarSign, Cloud, CpuIcon, FileCheck, LineChart, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -48,16 +47,11 @@ const Solutions = () => {
             </Card>
 
             <div className="mt-8 lg:mt-0">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="h-full w-full bg-gradient-to-br from-emerald-500/30 to-emerald-600/20 rounded-3xl blur-3xl" />
-                </div>
-                <img
-                  src="/placeholder.svg"
-                  alt="Monitoring Device"
-                  className="relative rounded-3xl shadow-2xl"
-                />
-              </div>
+              <img
+                src="/placeholder.svg"
+                alt="Monitoring Device"
+                className="relative rounded-3xl shadow-2xl w-full"
+              />
             </div>
           </div>
         </div>
@@ -66,16 +60,11 @@ const Solutions = () => {
         <div className="mt-24">
           <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="h-full w-full bg-gradient-to-br from-emerald-500/30 to-emerald-600/20 rounded-3xl blur-3xl" />
-                </div>
-                <img
-                  src="/placeholder.svg"
-                  alt="Software Dashboard"
-                  className="relative rounded-3xl shadow-2xl"
-                />
-              </div>
+              <img
+                src="/placeholder.svg"
+                alt="Software Dashboard"
+                className="relative rounded-3xl shadow-2xl w-full"
+              />
             </div>
 
             <Card className="order-1 lg:order-2 mt-8 lg:mt-0 relative overflow-hidden border-0 bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 shadow-lg">

@@ -23,11 +23,11 @@ const Contact = () => {
             Get in Touch
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Have questions about StreamLine? We're here to help. Fill out the form below and we'll get back to you shortly.
+            Have questions about our solutions? We're here to help. Fill out the form below and we'll get back to you shortly.
           </p>
           <form onSubmit={handleSubmit} className="mt-16 space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <div className="space-y-2">
+              <label htmlFor="name" className="text-sm font-medium text-gray-900">
                 Name
               </label>
               <Input
@@ -35,12 +35,12 @@ const Contact = () => {
                 id="name"
                 name="name"
                 required
-                className="mt-2"
                 placeholder="Your name"
+                className="w-full"
               />
             </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium text-gray-900">
                 Email
               </label>
               <Input
@@ -48,12 +48,12 @@ const Contact = () => {
                 id="email"
                 name="email"
                 required
-                className="mt-2"
                 placeholder="you@example.com"
+                className="w-full"
               />
             </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+            <div className="space-y-2">
+              <label htmlFor="message" className="text-sm font-medium text-gray-900">
                 Message
               </label>
               <Textarea
@@ -61,8 +61,8 @@ const Contact = () => {
                 name="message"
                 rows={6}
                 required
-                className="mt-2"
                 placeholder="How can we help you?"
+                className="w-full"
               />
             </div>
             <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700">
