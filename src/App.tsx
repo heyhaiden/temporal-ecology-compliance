@@ -7,8 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Pricing from "./pages/Pricing";
 import Solutions from "./pages/Solutions";
-import EnvironmentalMonitoring from "./pages/solutions/EnvironmentalMonitoring";
-import DigitalPlatform from "./pages/solutions/DigitalPlatform";
 import CaseStudy from "./pages/CaseStudy";
 import HousingDevelopment from "./pages/case-studies/HousingDevelopment";
 import InfrastructureProject from "./pages/case-studies/InfrastructureProject";
@@ -32,8 +30,6 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/solutions" element={<Solutions />} />
-              <Route path="/solutions/environmental-monitoring" element={<EnvironmentalMonitoring />} />
-              <Route path="/solutions/digital-platform" element={<DigitalPlatform />} />
               <Route path="/case-study" element={<CaseStudy />} />
               <Route path="/case-study/housing-development" element={<HousingDevelopment />} />
               <Route path="/case-study/infrastructure-project" element={<InfrastructureProject />} />

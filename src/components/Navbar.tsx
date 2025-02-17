@@ -2,14 +2,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
   const location = useLocation();
@@ -37,44 +29,15 @@ const Navbar = () => {
               Home
             </Link>
             
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger 
-                    className={cn(
-                      "text-sm font-medium transition-colors hover:text-emerald-600 bg-transparent",
-                      location.pathname.includes("/solutions") ? "text-emerald-600" : "text-gray-600"
-                    )}
-                  >
-                    Solutions
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 w-[200px]">
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            to="/solutions/environmental-monitoring"
-                            className="block p-2 hover:bg-gray-100 rounded-md"
-                          >
-                            Environmental Monitoring
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            to="/solutions/digital-platform"
-                            className="block p-2 hover:bg-gray-100 rounded-md"
-                          >
-                            Digital Platform
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+            <Link
+              to="/solutions"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-emerald-600",
+                location.pathname === "/solutions" ? "text-emerald-600" : "text-gray-600"
+              )}
+            >
+              Solutions
+            </Link>
 
             <Link
               to="/pricing"
