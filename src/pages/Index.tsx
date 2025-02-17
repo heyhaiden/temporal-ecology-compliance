@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, LineChart, Cloud, FileText } from "lucide-react";
@@ -65,20 +64,32 @@ const Index = () => {
       </section>
 
       {/* Trusted By Section */}
-      <section className="py-24 sm:py-32">
+      <section className="py-24 sm:py-32 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-2xl font-semibold leading-8 text-gray-900">
             Trusted By Industry Leaders
           </h2>
-          <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-6">
-            {[...Array(6)].map((_, i) => (
-              <img
-                key={i}
-                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
-                src="/placeholder.svg"
-                alt="Client logo"
-              />
-            ))}
+          <div className="mx-auto mt-10 flex animate-carousel">
+            <div className="flex space-x-16 min-w-full items-center justify-around">
+              {[...Array(6)].map((_, i) => (
+                <img
+                  key={i}
+                  className="max-h-12 w-auto object-contain opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
+                  src="/placeholder.svg"
+                  alt="Client logo"
+                />
+              ))}
+            </div>
+            <div className="flex space-x-16 min-w-full items-center justify-around">
+              {[...Array(6)].map((_, i) => (
+                <img
+                  key={i + 6}
+                  className="max-h-12 w-auto object-contain opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
+                  src="/placeholder.svg"
+                  alt="Client logo"
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>

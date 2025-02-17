@@ -2,6 +2,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
   const location = useLocation();
@@ -11,26 +19,78 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-xl font-semibold text-emerald-600">StreamLine</span>
+            <span className="text-xl font-semibold text-emerald-600">Temporal</span>
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
-            {[
-              { name: "Home", path: "/" },
-              { name: "Solutions", path: "/solutions" },
-              { name: "Contact", path: "/contact" },
-            ].map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-emerald-600",
-                  location.pathname === item.path ? "text-emerald-600" : "text-gray-600"
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
+            <Link
+              to="/"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-emerald-600",
+                location.pathname === "/" ? "text-emerald-600" : "text-gray-600"
+              )}
+            >
+              Home
+            </Link>
+            
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger 
+                    className={cn(
+                      "text-sm font-medium transition-colors hover:text-emerald-600 bg-transparent",
+                      location.pathname.includes("/solutions") ? "text-emerald-600" : "text-gray-600"
+                    )}
+                  >
+                    Solutions
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid gap-3 p-4 w-[200px]">
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/solutions/environmental-monitoring"
+                            className="block p-2 hover:bg-gray-100 rounded-md"
+                          >
+                            Environmental Monitoring
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/solutions/digital-platform"
+                            className="block p-2 hover:bg-gray-100 rounded-md"
+                          >
+                            Digital Platform
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
+            <Link
+              to="/resources"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-emerald-600",
+                location.pathname === "/resources" ? "text-emerald-600" : "text-gray-600"
+              )}
+            >
+              Resources
+            </Link>
+            
+            <Link
+              to="/contact"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-emerald-600",
+                location.pathname === "/contact" ? "text-emerald-600" : "text-gray-600"
+              )}
+            >
+              Contact
+            </Link>
           </div>
 
           <div className="flex items-center space-x-4">
