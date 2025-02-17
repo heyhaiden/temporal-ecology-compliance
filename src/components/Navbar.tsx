@@ -80,16 +80,6 @@ const Navbar = () => {
             </DropdownMenu>
             
             <Link
-              to="/pricing"
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-emerald-600",
-                location.pathname === "/pricing" ? "text-emerald-600" : "text-gray-600"
-              )}
-            >
-              Pricing
-            </Link>
-            
-            <Link
               to="/contact"
               className={cn(
                 "text-sm font-medium transition-colors hover:text-emerald-600",
@@ -160,14 +150,6 @@ const Navbar = () => {
                         </SheetClose>
                       </div>
                     </div>
-                    <SheetClose asChild>
-                      <Link
-                        to="/pricing"
-                        className="text-lg font-medium transition-colors hover:text-emerald-600"
-                      >
-                        Pricing
-                      </Link>
-                    </SheetClose>
                     <SheetClose asChild>
                       <Link
                         to="/contact"
