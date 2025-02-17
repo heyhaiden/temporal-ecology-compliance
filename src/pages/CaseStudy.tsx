@@ -1,3 +1,6 @@
+
+import { Link } from "react-router-dom";
+
 const CaseStudy = () => {
   return (
     <div className="py-24 sm:py-32">
