@@ -117,28 +117,30 @@ const Navbar = () => {
                     <span className="sr-only">Toggle menu</span>
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                  <nav className="flex flex-col gap-4">
+                <SheetContent side="top" className="w-full">
+                  <nav className="flex flex-col items-center gap-6 pt-6">
                     <Link
                       to="/"
                       className="text-lg font-medium transition-colors hover:text-emerald-600"
                     >
                       Home
                     </Link>
-                    <div className="py-4 space-y-4">
-                      <p className="text-sm font-medium text-gray-500">Solutions</p>
-                      <Link
-                        to="/solutions/habitat-monitoring"
-                        className="block py-2 text-base font-medium text-gray-900 hover:text-emerald-600"
-                      >
-                        Habitat Monitoring
-                      </Link>
-                      <Link
-                        to="/solutions/compliance-reporting"
-                        className="block py-2 text-base font-medium text-gray-900 hover:text-emerald-600"
-                      >
-                        Compliance Reporting
-                      </Link>
+                    <div className="w-full text-center">
+                      <p className="text-sm font-medium text-gray-500 mb-4">Solutions</p>
+                      <div className="space-y-4">
+                        <Link
+                          to="/solutions/habitat-monitoring"
+                          className="block text-base font-medium text-gray-900 hover:text-emerald-600"
+                        >
+                          Habitat Monitoring
+                        </Link>
+                        <Link
+                          to="/solutions/compliance-reporting"
+                          className="block text-base font-medium text-gray-900 hover:text-emerald-600"
+                        >
+                          Compliance Reporting
+                        </Link>
+                      </div>
                     </div>
                     <Link
                       to="/pricing"
