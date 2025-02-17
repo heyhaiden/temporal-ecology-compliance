@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -108,7 +107,6 @@ const Navbar = () => {
               </Button>
             </Link>
             
-            {/* Mobile Menu */}
             <div className="md:hidden">
               <Sheet>
                 <SheetTrigger asChild>
@@ -125,8 +123,13 @@ const Navbar = () => {
                     >
                       Home
                     </Link>
+                    <Link
+                      to="/solutions"
+                      className="text-lg font-medium transition-colors hover:text-emerald-600"
+                    >
+                      Solutions
+                    </Link>
                     <div className="w-full text-center">
-                      <p className="text-sm font-medium text-gray-500 mb-4">Solutions</p>
                       <div className="space-y-4">
                         <Link
                           to="/solutions/habitat-monitoring"
@@ -153,12 +156,6 @@ const Navbar = () => {
                       className="text-lg font-medium transition-colors hover:text-emerald-600"
                     >
                       Contact
-                    </Link>
-                    <Link
-                      to="/auth"
-                      className="text-lg font-medium transition-colors hover:text-emerald-600"
-                    >
-                      Login
                     </Link>
                   </nav>
                 </SheetContent>
