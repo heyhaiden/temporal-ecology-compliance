@@ -17,8 +17,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             {[
               { name: "Home", path: "/" },
-              { name: "Solutions", path: "/#solutions" },
-              { name: "Resources", path: "/resources" },
+              { name: "Solutions", path: "/solutions" },
               { name: "Contact", path: "/contact" },
             ].map((item) => (
               <Link
