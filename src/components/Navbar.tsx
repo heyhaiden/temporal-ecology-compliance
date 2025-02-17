@@ -8,7 +8,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Camera, FileCheck, Signal } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { ChevronDown, Menu, Signal, FileCheck } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -90,16 +95,73 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <Link to="/auth">
-              <Button variant="ghost" className="text-sm font-medium text-gray-600 hover:text-emerald-600">
-                Login
-              </Button>
-            </Link>
+            <div className="hidden md:block">
+              <Link to="/auth">
+                <Button variant="ghost" className="text-sm font-medium text-gray-600 hover:text-emerald-600">
+                  Login
+                </Button>
+              </Link>
+            </div>
             <Link to="/contact">
               <Button className="bg-emerald-600 text-white hover:bg-emerald-700">
                 Get Started
               </Button>
             </Link>
+            
+            {/* Mobile Menu */}
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Toggle menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                  <nav className="flex flex-col gap-4">
+                    <Link
+                      to="/"
+                      className="text-lg font-medium transition-colors hover:text-emerald-600"
+                    >
+                      Home
+                    </Link>
+                    <div className="py-4 space-y-4">
+                      <p className="text-sm font-medium text-gray-500">Solutions</p>
+                      <Link
+                        to="/solutions/habitat-monitoring"
+                        className="block py-2 text-base font-medium text-gray-900 hover:text-emerald-600"
+                      >
+                        Habitat Monitoring
+                      </Link>
+                      <Link
+                        to="/solutions/compliance-reporting"
+                        className="block py-2 text-base font-medium text-gray-900 hover:text-emerald-600"
+                      >
+                        Compliance Reporting
+                      </Link>
+                    </div>
+                    <Link
+                      to="/pricing"
+                      className="text-lg font-medium transition-colors hover:text-emerald-600"
+                    >
+                      Pricing
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="text-lg font-medium transition-colors hover:text-emerald-600"
+                    >
+                      Contact
+                    </Link>
+                    <Link
+                      to="/auth"
+                      className="text-lg font-medium transition-colors hover:text-emerald-600"
+                    >
+                      Login
+                    </Link>
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </div>
