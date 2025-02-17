@@ -1,17 +1,8 @@
 
 import { Button } from "@/components/ui/button";
-import { createClient } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase credentials');
-}
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+import { supabase } from "@/integrations/supabase/client";
 
 const Auth = () => {
   const navigate = useNavigate();
