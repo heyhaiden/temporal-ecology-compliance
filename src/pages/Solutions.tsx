@@ -1,98 +1,112 @@
 
 import { CircleDollarSign, Cloud, CpuIcon, FileCheck, LineChart, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Solutions = () => {
   return (
-    <div className="pt-16">
+    <div className="py-24 sm:py-32">
       {/* Hero Section */}
-      <section className="relative bg-white py-20 sm:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Integrated Hardware & Software Solutions
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Our comprehensive ecosystem combines cutting-edge monitoring devices with powerful software to streamline your BNG compliance process.
-            </p>
-          </div>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Integrated Hardware & Software Solutions
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-gray-600">
+            Our comprehensive ecosystem combines cutting-edge monitoring devices with powerful software to streamline your BNG compliance process.
+          </p>
         </div>
-      </section>
 
-      {/* Hardware Section */}
-      <section className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2 lg:items-start">
-            <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-              <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Advanced Monitoring Hardware</h2>
-                <p className="mt-6 text-lg leading-8 text-gray-600">
+        {/* Hardware Section */}
+        <div className="mt-16 sm:mt-20">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+            <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-bold tracking-tight text-gray-900 mb-4">
+                  Advanced Monitoring Hardware
+                </h3>
+                <p className="text-gray-600 mb-6">
                   State-of-the-art monitoring devices designed for reliability and accuracy in environmental data collection.
                 </p>
-                <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+                <ul className="space-y-4">
                   {hardwareFeatures.map((feature) => (
-                    <div key={feature.name} className="relative pl-9">
-                      <dt className="inline font-semibold text-gray-900">
-                        <feature.icon className="absolute left-1 top-1 h-5 w-5 text-emerald-600" />
-                        {feature.name}
-                      </dt>
-                      <dd className="inline ml-1">{feature.description}</dd>
-                    </div>
+                    <li key={feature.name} className="flex items-start gap-3">
+                      <div className="flex-shrink-0">
+                        <feature.icon className="h-6 w-6 text-emerald-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">{feature.name}</h4>
+                        <p className="mt-1 text-sm text-gray-600">{feature.description}</p>
+                      </div>
+                    </li>
                   ))}
-                </dl>
-              </div>
-            </div>
-            <div className="sm:px-6 lg:px-0">
-              <div className="relative isolate overflow-hidden bg-emerald-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-16 sm:pt-16 lg:mx-0 lg:max-w-none">
-                <div className="relative mx-auto max-w-2xl lg:mx-0">
-                  <img
-                    src="/placeholder.svg"
-                    alt="Monitoring Device"
-                    className="w-full rounded-xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10"
-                  />
+                </ul>
+                <Button className="mt-8 bg-emerald-600 hover:bg-emerald-700">
+                  Learn More
+                </Button>
+              </CardContent>
+            </Card>
+
+            <div className="mt-8 lg:mt-0">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="h-full w-full bg-gradient-to-br from-emerald-500/30 to-emerald-600/20 rounded-3xl blur-3xl" />
                 </div>
+                <img
+                  src="/placeholder.svg"
+                  alt="Monitoring Device"
+                  className="relative rounded-3xl shadow-2xl"
+                />
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Software Section */}
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2 lg:items-start">
-            <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-              <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Powerful Software Platform</h2>
-                <p className="mt-6 text-lg leading-8 text-gray-600">
+        {/* Software Section */}
+        <div className="mt-24">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="h-full w-full bg-gradient-to-br from-emerald-500/30 to-emerald-600/20 rounded-3xl blur-3xl" />
+                </div>
+                <img
+                  src="/placeholder.svg"
+                  alt="Software Dashboard"
+                  className="relative rounded-3xl shadow-2xl"
+                />
+              </div>
+            </div>
+
+            <Card className="order-1 lg:order-2 mt-8 lg:mt-0 relative overflow-hidden border-0 bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-bold tracking-tight text-gray-900 mb-4">
+                  Powerful Software Platform
+                </h3>
+                <p className="text-gray-600 mb-6">
                   Cloud-based software solution that transforms environmental data into actionable insights and compliance reports.
                 </p>
-                <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+                <ul className="space-y-4">
                   {softwareFeatures.map((feature) => (
-                    <div key={feature.name} className="relative pl-9">
-                      <dt className="inline font-semibold text-gray-900">
-                        <feature.icon className="absolute left-1 top-1 h-5 w-5 text-emerald-600" />
-                        {feature.name}
-                      </dt>
-                      <dd className="inline ml-1">{feature.description}</dd>
-                    </div>
+                    <li key={feature.name} className="flex items-start gap-3">
+                      <div className="flex-shrink-0">
+                        <feature.icon className="h-6 w-6 text-emerald-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">{feature.name}</h4>
+                        <p className="mt-1 text-sm text-gray-600">{feature.description}</p>
+                      </div>
+                    </li>
                   ))}
-                </dl>
-              </div>
-            </div>
-            <div className="sm:px-6 lg:px-0">
-              <div className="relative isolate overflow-hidden bg-emerald-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-16 sm:pt-16 lg:mx-0 lg:max-w-none">
-                <div className="relative mx-auto max-w-2xl lg:mx-0">
-                  <img
-                    src="/placeholder.svg"
-                    alt="Software Dashboard"
-                    className="w-full rounded-xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10"
-                  />
-                </div>
-              </div>
-            </div>
+                </ul>
+                <Button className="mt-8 bg-emerald-600 hover:bg-emerald-700">
+                  Learn More
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
@@ -100,17 +114,17 @@ const Solutions = () => {
 const hardwareFeatures = [
   {
     name: "Precision Sensors",
-    description: ": Industry-leading accuracy with our advanced environmental monitoring sensors.",
+    description: "Industry-leading accuracy with our advanced environmental monitoring sensors.",
     icon: CpuIcon,
   },
   {
     name: "Durability",
-    description: ": Weather-resistant design built for long-term outdoor deployment.",
+    description: "Weather-resistant design built for long-term outdoor deployment.",
     icon: ShieldCheck,
   },
   {
     name: "Real-time Data",
-    description: ": Continuous monitoring with instant data transmission to our cloud platform.",
+    description: "Continuous monitoring with instant data transmission to our cloud platform.",
     icon: LineChart,
   },
 ];
@@ -118,17 +132,17 @@ const hardwareFeatures = [
 const softwareFeatures = [
   {
     name: "Cloud Platform",
-    description: ": Secure, scalable infrastructure for data storage and processing.",
+    description: "Secure, scalable infrastructure for data storage and processing.",
     icon: Cloud,
   },
   {
     name: "Automated Reports",
-    description: ": Generate compliance documentation with a single click.",
+    description: "Generate compliance documentation with a single click.",
     icon: FileCheck,
   },
   {
     name: "Cost Efficiency",
-    description: ": Reduce manual work and save time with automated workflows.",
+    description: "Reduce manual work and save time with automated workflows.",
     icon: CircleDollarSign,
   },
 ];
