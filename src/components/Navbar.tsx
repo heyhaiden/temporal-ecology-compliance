@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -9,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+import { Camera, FileCheck } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -41,15 +41,23 @@ const Navbar = () => {
               )}>
                 Solutions <ChevronDown className="ml-1 h-4 w-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="w-56 bg-white">
                 <DropdownMenuItem>
-                  <Link to="/solutions/habitat-monitoring" className="w-full">
-                    Habitat Monitoring
+                  <Link to="/solutions/habitat-monitoring" className="w-full flex items-center space-x-2 py-2">
+                    <Camera className="h-5 w-5 text-emerald-600" />
+                    <div>
+                      <p className="font-medium">Habitat Monitoring</p>
+                      <p className="text-xs text-gray-500">Real-time habitat tracking</p>
+                    </div>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link to="/solutions/compliance-reporting" className="w-full">
-                    Compliance Reporting
+                  <Link to="/solutions/compliance-reporting" className="w-full flex items-center space-x-2 py-2">
+                    <FileCheck className="h-5 w-5 text-emerald-600" />
+                    <div>
+                      <p className="font-medium">Compliance Reporting</p>
+                      <p className="text-xs text-gray-500">Automated BNG reports</p>
+                    </div>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
