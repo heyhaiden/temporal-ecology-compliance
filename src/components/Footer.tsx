@@ -7,12 +7,15 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center space-x-3">
               <img
                 src="/lovable-uploads/35e560b4-c9cc-4388-80b3-722cfa45b123.png"
                 alt="Logo"
                 className="h-8 w-auto"
               />
+              <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
+                Temporal
+              </span>
             </Link>
             <p className="text-sm text-gray-600">
               Making environmental compliance simple and efficient.

@@ -10,12 +10,15 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-3">
             <img
               src="/lovable-uploads/35e560b4-c9cc-4388-80b3-722cfa45b123.png"
               alt="Logo"
               className="h-8 w-auto"
             />
+            <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
+              Temporal
+            </span>
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
