@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, LineChart, Cloud, FileText } from "lucide-react";
 
 const Index = () => {
   return (
@@ -33,7 +33,7 @@ const Index = () => {
             </div>
             <div className="relative">
               <img
-                src="/lovable-uploads/242c82b9-1801-4d36-b154-c2134253ae1e.png"
+                src="/placeholder.svg"
                 alt="Monitoring Device"
                 className="rounded-xl shadow-xl ring-1 ring-gray-400/10"
               />
@@ -63,6 +63,78 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Trusted By Section */}
+      <section className="py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-2xl font-semibold leading-8 text-gray-900">
+            Trusted By Industry Leaders
+          </h2>
+          <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-6">
+            {[...Array(6)].map((_, i) => (
+              <img
+                key={i}
+                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1 opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
+                src="/placeholder.svg"
+                alt="Client logo"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="bg-gray-50 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-medium tracking-tight text-gray-900 sm:text-4xl">
+              What Our Customers Say
+            </h2>
+          </div>
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.author} className="flex flex-col bg-white p-8 shadow-sm ring-1 ring-gray-200 rounded-xl">
+                <blockquote className="flex-1">
+                  <p className="text-lg text-gray-600">{testimonial.quote}</p>
+                </blockquote>
+                <div className="mt-8 flex items-center gap-x-4">
+                  <img
+                    src="/placeholder.svg"
+                    alt={testimonial.author}
+                    className="h-10 w-10 rounded-full bg-gray-100"
+                  />
+                  <div>
+                    <div className="font-semibold text-gray-900">{testimonial.author}</div>
+                    <div className="text-sm text-gray-600">{testimonial.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-emerald-600 py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Ready to StreamLine Your BNG Reporting?
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-emerald-100">
+              Join thousands of satisfied customers who have simplified their environmental compliance process with StreamLine.
+            </p>
+            <div className="mt-10">
+              <Link to="/contact">
+                <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
+                  Get Started Now
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
@@ -71,17 +143,35 @@ const features = [
   {
     name: "Real-Time Analytics",
     description: "Continuous monitoring and analysis of environmental data with instant alerts and notifications.",
-    icon: Check,
+    icon: LineChart,
   },
   {
     name: "Cloud Integration",
     description: "Seamless data synchronization and storage with secure cloud-based infrastructure.",
-    icon: Check,
+    icon: Cloud,
   },
   {
     name: "Compliance Reports",
     description: "Automated generation of compliance reports following UK biodiversity guidelines.",
-    icon: Check,
+    icon: FileText,
+  },
+];
+
+const testimonials = [
+  {
+    quote: "StreamLine has revolutionized how we handle our environmental compliance. The automated reporting saves us countless hours each month.",
+    author: "Sarah Johnson",
+    role: "Environmental Manager",
+  },
+  {
+    quote: "The real-time monitoring capabilities have transformed our ability to respond to environmental changes quickly and effectively.",
+    author: "Michael Chen",
+    role: "Project Director",
+  },
+  {
+    quote: "The platform's intuitive interface and comprehensive reporting features make it an invaluable tool for our compliance needs.",
+    author: "Emma Roberts",
+    role: "Sustainability Lead",
   },
 ];
 
