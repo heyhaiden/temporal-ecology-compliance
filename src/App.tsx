@@ -15,6 +15,8 @@ import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
+import HabitatMonitoring from "./pages/solutions/HabitatMonitoring";
+import ComplianceReporting from "./pages/solutions/ComplianceReporting";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,8 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/solutions" element={<Solutions />} />
+              <Route path="/solutions/habitat-monitoring" element={<HabitatMonitoring />} />
+              <Route path="/solutions/compliance-reporting" element={<ComplianceReporting />} />
               <Route path="/case-study" element={<CaseStudy />} />
               <Route path="/case-study/housing-development" element={<HousingDevelopment />} />
               <Route path="/case-study/infrastructure-project" element={<InfrastructureProject />} />
