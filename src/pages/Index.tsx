@@ -17,7 +17,7 @@ const Index = () => {
                 Simplify your biodiversity net gain compliance with our automated monitoring and reporting solutions. Built for the UK's evolving environmental regulations.
               </p>
               <div className="mt-8 flex gap-x-6">
-                <Link to="/contact">
+                <Link to="/solutions">
                   <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -25,7 +25,7 @@ const Index = () => {
                 </Link>
                 <Link to="/case-study">
                   <Button size="lg" variant="outline">
-                    Watch Demo
+                    Case Studies
                   </Button>
                 </Link>
               </div>
