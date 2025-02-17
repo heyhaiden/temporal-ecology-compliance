@@ -32,7 +32,7 @@ const ComplianceReporting = () => {
                 </Button>
               </Link>
               <Link to="/case-study">
-                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="border-2 border-white bg-gray-900/60 text-white hover:bg-gray-900/80">
                   View Case Studies
                 </Button>
               </Link>
