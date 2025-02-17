@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
@@ -43,12 +45,22 @@ const Navbar = () => {
               Home
             </Link>
             
+            <Link
+              to="/solutions"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-emerald-600",
+                location.pathname === "/solutions" ? "text-emerald-600" : "text-gray-600"
+              )}
+            >
+              Solutions
+            </Link>
+            
             <DropdownMenu>
               <DropdownMenuTrigger className={cn(
                 "text-sm font-medium transition-colors hover:text-emerald-600 flex items-center [data-state=open]:text-emerald-600",
-                location.pathname.includes("/solutions") ? "text-emerald-600" : "text-gray-600"
+                location.pathname.includes("/solutions/") ? "text-emerald-600" : "text-gray-600"
               )}>
-                Solutions <ChevronDown className="ml-1 h-4 w-4" />
+                Solutions Pages <ChevronDown className="ml-1 h-4 w-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56 bg-white">
                 <DropdownMenuItem>
@@ -117,46 +129,58 @@ const Navbar = () => {
                 </SheetTrigger>
                 <SheetContent side="top" className="w-full">
                   <nav className="flex flex-col items-center gap-6 pt-6">
-                    <Link
-                      to="/"
-                      className="text-lg font-medium transition-colors hover:text-emerald-600"
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      to="/solutions"
-                      className="text-lg font-medium transition-colors hover:text-emerald-600"
-                    >
-                      Solutions
-                    </Link>
+                    <SheetClose asChild>
+                      <Link
+                        to="/"
+                        className="text-lg font-medium transition-colors hover:text-emerald-600"
+                      >
+                        Home
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link
+                        to="/solutions"
+                        className="text-lg font-medium transition-colors hover:text-emerald-600"
+                      >
+                        Solutions
+                      </Link>
+                    </SheetClose>
                     <div className="w-full text-center">
                       <div className="space-y-4">
-                        <Link
-                          to="/solutions/habitat-monitoring"
-                          className="block text-base font-medium text-gray-900 hover:text-emerald-600"
-                        >
-                          Habitat Monitoring
-                        </Link>
-                        <Link
-                          to="/solutions/compliance-reporting"
-                          className="block text-base font-medium text-gray-900 hover:text-emerald-600"
-                        >
-                          Compliance Reporting
-                        </Link>
+                        <SheetClose asChild>
+                          <Link
+                            to="/solutions/habitat-monitoring"
+                            className="block text-base font-medium text-gray-900 hover:text-emerald-600"
+                          >
+                            Habitat Monitoring
+                          </Link>
+                        </SheetClose>
+                        <SheetClose asChild>
+                          <Link
+                            to="/solutions/compliance-reporting"
+                            className="block text-base font-medium text-gray-900 hover:text-emerald-600"
+                          >
+                            Compliance Reporting
+                          </Link>
+                        </SheetClose>
                       </div>
                     </div>
-                    <Link
-                      to="/pricing"
-                      className="text-lg font-medium transition-colors hover:text-emerald-600"
-                    >
-                      Pricing
-                    </Link>
-                    <Link
-                      to="/contact"
-                      className="text-lg font-medium transition-colors hover:text-emerald-600"
-                    >
-                      Contact
-                    </Link>
+                    <SheetClose asChild>
+                      <Link
+                        to="/pricing"
+                        className="text-lg font-medium transition-colors hover:text-emerald-600"
+                      >
+                        Pricing
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link
+                        to="/contact"
+                        className="text-lg font-medium transition-colors hover:text-emerald-600"
+                      >
+                        Contact
+                      </Link>
+                    </SheetClose>
                   </nav>
                 </SheetContent>
               </Sheet>
