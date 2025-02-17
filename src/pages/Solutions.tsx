@@ -1,6 +1,8 @@
+
 import { CircleDollarSign, Cloud, CpuIcon, FileCheck, LineChart, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const Solutions = () => {
   return (
@@ -40,9 +42,11 @@ const Solutions = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="mt-8 bg-emerald-600 hover:bg-emerald-700">
-                  Learn More
-                </Button>
+                <Link to="/solutions/habitat-monitoring">
+                  <Button className="mt-8 bg-emerald-600 hover:bg-emerald-700">
+                    Learn More
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
@@ -88,9 +92,11 @@ const Solutions = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="mt-8 bg-emerald-600 hover:bg-emerald-700">
-                  Learn More
-                </Button>
+                <Link to="/solutions/compliance-reporting">
+                  <Button className="mt-8 bg-emerald-600 hover:bg-emerald-700">
+                    Learn More
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>

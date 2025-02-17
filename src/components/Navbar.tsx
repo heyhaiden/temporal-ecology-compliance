@@ -3,18 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ChevronDown, Menu, Signal, FileCheck } from "lucide-react";
+import { Menu } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -55,35 +49,6 @@ const Navbar = () => {
               Solutions
             </Link>
             
-            <DropdownMenu>
-              <DropdownMenuTrigger className={cn(
-                "text-sm font-medium transition-colors hover:text-emerald-600 flex items-center [data-state=open]:text-emerald-600",
-                location.pathname.includes("/solutions/") ? "text-emerald-600" : "text-gray-600"
-              )}>
-                Solutions Pages <ChevronDown className="ml-1 h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-white">
-                <DropdownMenuItem>
-                  <Link to="/solutions/habitat-monitoring" className="w-full flex items-center space-x-2 py-2">
-                    <Signal className="h-5 w-5 text-emerald-600" />
-                    <div>
-                      <p className="font-medium">Habitat Monitoring</p>
-                      <p className="text-xs text-gray-500">Real-time habitat tracking</p>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/solutions/compliance-reporting" className="w-full flex items-center space-x-2 py-2">
-                    <FileCheck className="h-5 w-5 text-emerald-600" />
-                    <div>
-                      <p className="font-medium">Compliance Reporting</p>
-                      <p className="text-xs text-gray-500">Automated BNG reports</p>
-                    </div>
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             <Link
               to="/pricing"
               className={cn(
@@ -145,26 +110,6 @@ const Navbar = () => {
                         Solutions
                       </Link>
                     </SheetClose>
-                    <div className="w-full text-center">
-                      <div className="space-y-4">
-                        <SheetClose asChild>
-                          <Link
-                            to="/solutions/habitat-monitoring"
-                            className="block text-base font-medium text-gray-900 hover:text-emerald-600"
-                          >
-                            Habitat Monitoring
-                          </Link>
-                        </SheetClose>
-                        <SheetClose asChild>
-                          <Link
-                            to="/solutions/compliance-reporting"
-                            className="block text-base font-medium text-gray-900 hover:text-emerald-600"
-                          >
-                            Compliance Reporting
-                          </Link>
-                        </SheetClose>
-                      </div>
-                    </div>
                     <SheetClose asChild>
                       <Link
                         to="/pricing"
