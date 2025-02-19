@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Code2, Api, GitBranch, Package, Terminal, Database } from "lucide-react";
+import { Code2, GitBranch, Package, Terminal, Database, Code } from "lucide-react";
 
 const ForDevelopers = () => {
   return (
@@ -64,7 +64,7 @@ const features = [
   {
     title: "RESTful API",
     description: "Modern REST API with comprehensive documentation and examples.",
-    icon: Api
+    icon: Code
   },
   {
     title: "SDKs & Libraries",
