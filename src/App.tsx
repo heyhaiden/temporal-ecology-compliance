@@ -17,6 +17,9 @@ import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 import HabitatMonitoring from "./pages/solutions/HabitatMonitoring";
 import ComplianceReporting from "./pages/solutions/ComplianceReporting";
+import ForDevelopers from "./pages/solutions/ForDevelopers";
+import ForLandManagers from "./pages/solutions/ForLandManagers";
+import ForEcologists from "./pages/solutions/ForEcologists";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +37,9 @@ const App = () => {
               <Route path="/solutions" element={<Solutions />} />
               <Route path="/solutions/habitat-monitoring" element={<HabitatMonitoring />} />
               <Route path="/solutions/compliance-reporting" element={<ComplianceReporting />} />
+              <Route path="/solutions/for-developers" element={<ForDevelopers />} />
+              <Route path="/solutions/for-land-managers" element={<ForLandManagers />} />
+              <Route path="/solutions/for-ecologists" element={<ForEcologists />} />
               <Route path="/case-study" element={<CaseStudy />} />
               <Route path="/case-study/housing-development" element={<HousingDevelopment />} />
               <Route path="/case-study/infrastructure-project" element={<InfrastructureProject />} />

@@ -2,6 +2,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +15,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ChevronDown, Menu, Signal, FileCheck } from "lucide-react";
+import { ChevronDown, Menu, Signal, FileCheck, Code2, Users, Leaf } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -57,25 +58,64 @@ const Navbar = () => {
                   Solutions <ChevronDown className="h-4 w-4" />
                 </Link>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-white">
-                <DropdownMenuItem>
-                  <Link to="/solutions/habitat-monitoring" className="w-full flex items-center space-x-2 py-2">
-                    <Signal className="h-5 w-5 text-emerald-600" />
-                    <div>
-                      <p className="font-medium">Habitat Monitoring</p>
-                      <p className="text-xs text-gray-500">Real-time habitat tracking</p>
+              <DropdownMenuContent className="w-[500px] bg-white p-4">
+                <div className="grid grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-medium text-sm text-gray-500 mb-3">For Your Role</h4>
+                    <div className="space-y-2">
+                      <DropdownMenuItem>
+                        <Link to="/solutions/for-developers" className="w-full flex items-center space-x-2 py-2">
+                          <Code2 className="h-5 w-5 text-emerald-600" />
+                          <div>
+                            <p className="font-medium">For Developers</p>
+                            <p className="text-xs text-gray-500">API & Integration tools</p>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link to="/solutions/for-land-managers" className="w-full flex items-center space-x-2 py-2">
+                          <Users className="h-5 w-5 text-emerald-600" />
+                          <div>
+                            <p className="font-medium">For Land Managers</p>
+                            <p className="text-xs text-gray-500">Site management tools</p>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link to="/solutions/for-ecologists" className="w-full flex items-center space-x-2 py-2">
+                          <Leaf className="h-5 w-5 text-emerald-600" />
+                          <div>
+                            <p className="font-medium">For Ecologists</p>
+                            <p className="text-xs text-gray-500">Biodiversity assessment</p>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
                     </div>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/solutions/compliance-reporting" className="w-full flex items-center space-x-2 py-2">
-                    <FileCheck className="h-5 w-5 text-emerald-600" />
-                    <div>
-                      <p className="font-medium">Compliance Reporting</p>
-                      <p className="text-xs text-gray-500">Automated BNG reports</p>
+                  </div>
+                  <div className="pl-8 border-l border-gray-200">
+                    <h4 className="font-medium text-sm text-gray-500 mb-3">Our Solutions</h4>
+                    <div className="space-y-2">
+                      <DropdownMenuItem>
+                        <Link to="/solutions/habitat-monitoring" className="w-full flex items-center space-x-2 py-2">
+                          <Signal className="h-5 w-5 text-emerald-600" />
+                          <div>
+                            <p className="font-medium">Habitat Monitoring</p>
+                            <p className="text-xs text-gray-500">Real-time habitat tracking</p>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link to="/solutions/compliance-reporting" className="w-full flex items-center space-x-2 py-2">
+                          <FileCheck className="h-5 w-5 text-emerald-600" />
+                          <div>
+                            <p className="font-medium">Compliance Reporting</p>
+                            <p className="text-xs text-gray-500">Automated BNG reports</p>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
                     </div>
-                  </Link>
-                </DropdownMenuItem>
+                  </div>
+                </div>
               </DropdownMenuContent>
             </DropdownMenu>
             
