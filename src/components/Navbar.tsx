@@ -61,7 +61,7 @@ const Navbar = () => {
               <DropdownMenuContent className="w-[500px] bg-white p-4">
                 <div className="grid grid-cols-2 gap-8">
                   <div>
-                   
+                  <h4 className="font-medium text-sm text-gray-500 mb-3">Use Case</h4>
                     <div className="space-y-2">
                       <DropdownMenuItem>
                         <Link to="/solutions/for-developers" className="w-full flex items-center space-x-2 py-2">
@@ -93,7 +93,7 @@ const Navbar = () => {
                     </div>
                   </div>
                   <div className="pl-8 border-l border-gray-200">
-                   
+                  <h4 className="font-medium text-sm text-gray-500 mb-3">Our Solutions</h4>
                     <div className="space-y-2">
                       <DropdownMenuItem>
                         <Link to="/solutions/habitat-monitoring" className="w-full flex items-center space-x-2 py-2">
