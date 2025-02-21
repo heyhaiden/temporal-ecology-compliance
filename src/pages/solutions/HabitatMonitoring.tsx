@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Check, Activity, ArrowRight, Brain, BarChart3, Database, Wifi, Battery, Ruler, Droplets, Wind, AlertTriangle, Smartphone, Shield } from "lucide-react";
+
 const HabitatMonitoring = () => {
   return <div className="pt-16">
       {/* Hero Section */}
@@ -23,10 +24,14 @@ const HabitatMonitoring = () => {
                   </div>)}
               </div>
               <div className="flex gap-4">
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-                  Request Demo
-                </Button>
-                <Button size="lg" variant="outline" className="border-2">Case Studies</Button>
+                <Link to="/contact">
+                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+                    Request Demo
+                  </Button>
+                </Link>
+                <Link to="/case-study">
+                  <Button size="lg" variant="outline" className="border-2">Case Studies</Button>
+                </Link>
               </div>
             </div>
             <div>
@@ -120,15 +125,17 @@ const HabitatMonitoring = () => {
             Get started with StreamLine's AI-powered sensor solution and revolutionize your approach to environmental compliance.
           </p>
           <div className="flex justify-center gap-4">
-            <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
-              Schedule Demo
-            </Button>
-            
+            <Link to="/contact">
+              <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
+                Schedule Demo
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
     </div>;
 };
+
 const benefits = ["AI-Powered Analysis", "24/7 Monitoring", "Real-time Alerts"];
 const workflowSteps = [{
   title: "Data Collection",
@@ -187,4 +194,5 @@ const physicalSpecs = [{
   icon: Activity,
   description: "Weight: 300g"
 }];
+
 export default HabitatMonitoring;

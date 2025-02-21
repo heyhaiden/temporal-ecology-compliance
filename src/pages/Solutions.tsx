@@ -27,10 +27,12 @@ const Solutions = () => {
                 ))}
               </div>
               <div className="flex gap-x-6">
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-                  Schedule Demo
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link to="/contact">
+                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+                    Schedule Demo
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
                 <Link to="/case-study">
                   <Button size="lg" variant="outline" className="border-2">
                     Case Studies
@@ -123,9 +125,11 @@ const Solutions = () => {
             Get started with our integrated solutions and revolutionize your approach to biodiversity net gain.
           </p>
           <div className="flex justify-center gap-4">
-            <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
-              Schedule Demo
-            </Button>
+            <Link to="/contact">
+              <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
+                Schedule Demo
+              </Button>
+            </Link>
             <Link to="/contact">
               <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-emerald-700">
                 Contact Sales
