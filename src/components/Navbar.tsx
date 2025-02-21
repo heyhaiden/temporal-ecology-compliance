@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -31,8 +30,8 @@ const Navbar = () => {
                 </Link>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-[500px] bg-white p-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
+                <div className="grid grid-cols-2 gap-0">
+                  <div className="pr-4">
                     <div className="space-y-2">
                       <DropdownMenuItem>
                         <Link to="/solutions/for-developers" className="w-full flex items-center space-x-2 py-2">
@@ -63,8 +62,8 @@ const Navbar = () => {
                       </DropdownMenuItem>
                     </div>
                   </div>
-                  <div className="border-l border-gray-200 pl-4">
-                    <div className="space-y-2">
+                  <div className="border-l border-gray-200">
+                    <div className="space-y-2 pl-4">
                       <DropdownMenuItem>
                         <Link to="/solutions/habitat-monitoring" className="w-full flex items-center space-x-2 py-2">
                           <Signal className="h-5 w-5 text-emerald-600" />
