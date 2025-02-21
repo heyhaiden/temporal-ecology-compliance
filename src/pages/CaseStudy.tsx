@@ -16,12 +16,14 @@ const CaseStudy = () => {
             {caseStudies.map((study) => (
               <article key={study.title} className="relative isolate flex flex-col gap-8 lg:flex-row">
                 <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-                  <img
-                    src={study.image}
-                    alt={study.title}
-                    className="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
-                  />
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+                  <Link to={study.href}>
+                    <img
+                      src={study.image}
+                      alt={study.title}
+                      className="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover transition-transform hover:scale-105"
+                    />
+                    <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+                  </Link>
                 </div>
                 <div>
                   <div className="flex items-center gap-x-4 text-xs">
@@ -58,7 +60,7 @@ const caseStudies = [
     description: "How a major housing developer achieved 15% biodiversity net gain through strategic planning and monitoring.",
     date: "Mar 16, 2024",
     category: "Case Study",
-    image: "/lovable-uploads/242c82b9-1801-4d36-b154-c2134253ae1e.png",
+    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Infrastructure Project Success in Yorkshire",
@@ -66,7 +68,7 @@ const caseStudies = [
     description: "Implementing real-time biodiversity monitoring across a major infrastructure project spanning multiple sites.",
     date: "Mar 10, 2024",
     category: "Case Study",
-    image: "/lovable-uploads/242c82b9-1801-4d36-b154-c2134253ae1e.png",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
