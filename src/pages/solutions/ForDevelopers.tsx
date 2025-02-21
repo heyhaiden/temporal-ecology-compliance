@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Code2, GitBranch, Package, Terminal, Database, Code } from "lucide-react";
+import { Building2, FileCheck, BarChart2, Clock, Users, Calculator } from "lucide-react";
 
 const ForDevelopers = () => {
   return (
@@ -11,28 +11,28 @@ const ForDevelopers = () => {
       <div className="relative">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
-            alt="Developer Environment"
+            src="https://images.unsplash.com/photo-1487958449943-2429e8be8625"
+            alt="Construction Development"
             className="w-full h-[600px] object-cover brightness-50"
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-32 sm:py-48">
           <div className="max-w-2xl text-white">
             <h1 className="text-4xl font-medium tracking-tight sm:text-6xl mb-6">
-              Developer Tools & APIs
+              Development Planning Solutions
             </h1>
             <p className="text-lg leading-8 text-gray-100 mb-8">
-              Integrate environmental monitoring data into your applications with our comprehensive API and developer tools.
+              Streamline your development projects with integrated biodiversity net gain planning and monitoring tools designed specifically for property developers.
             </p>
             <div className="mt-8 flex gap-x-6">
               <Link to="/contact">
                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-                  Get API Key
+                  Schedule Consultation
                 </Button>
               </Link>
-              <Link to="/docs">
+              <Link to="/case-study">
                 <Button size="lg" variant="outline" className="border-2 border-white bg-gray-900/60 text-white hover:bg-gray-900/80">
-                  View Documentation
+                  View Case Studies
                 </Button>
               </Link>
             </div>
@@ -62,34 +62,34 @@ const ForDevelopers = () => {
 
 const features = [
   {
-    title: "RESTful API",
-    description: "Modern REST API with comprehensive documentation and examples.",
-    icon: Code
+    title: "Project Planning",
+    description: "Comprehensive tools for planning developments with biodiversity requirements in mind.",
+    icon: Building2
   },
   {
-    title: "SDKs & Libraries",
-    description: "Official SDKs for popular programming languages.",
-    icon: Package
+    title: "Compliance Management",
+    description: "Streamlined BNG compliance tracking and documentation.",
+    icon: FileCheck
   },
   {
-    title: "Version Control",
-    description: "Full version control and change management.",
-    icon: GitBranch
+    title: "Performance Tracking",
+    description: "Monitor biodiversity metrics throughout your development lifecycle.",
+    icon: BarChart2
   },
   {
-    title: "CLI Tools",
-    description: "Command-line tools for automation and scripting.",
-    icon: Terminal
+    title: "Timeline Management",
+    description: "Track project milestones and environmental commitments.",
+    icon: Clock
   },
   {
-    title: "Data Access",
-    description: "Direct access to environmental monitoring data.",
-    icon: Database
+    title: "Stakeholder Portal",
+    description: "Coordinate with contractors and environmental consultants.",
+    icon: Users
   },
   {
-    title: "Code Examples",
-    description: "Ready-to-use code samples and templates.",
-    icon: Code2
+    title: "BNG Calculator",
+    description: "Built-in tools for biodiversity net gain calculations.",
+    icon: Calculator
   }
 ];
 
