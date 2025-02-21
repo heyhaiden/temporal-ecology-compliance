@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -8,7 +9,7 @@ import { ChevronDown, Menu, Signal, FileCheck, Code2, Users, Leaf } from "lucide
 
 const Navbar = () => {
   const location = useLocation();
-  return <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
+  return <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50 pr-[var(--removed-body-scroll-bar-size)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-3">
