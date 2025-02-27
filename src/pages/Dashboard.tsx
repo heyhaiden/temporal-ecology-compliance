@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
@@ -5,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Battery, Wifi, AlertTriangle, ThermometerIcon, Signal, LayoutDashboard, Bird, Map, FileAudio, FileText, Settings } from "lucide-react";
 import { toast } from "sonner";
+import { Link, useLocation } from "react-router-dom";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -15,6 +17,7 @@ const Dashboard = () => {
     uptime: "99.9%"
   });
   const [userName, setUserName] = useState("Demo User");
+  const location = useLocation();
   
   // Load dashboard data
   useEffect(() => {
@@ -58,6 +61,16 @@ const Dashboard = () => {
     setUserName("Demo User");
   };
 
+  // Helper function to determine if a link is active
+  const isLinkActive = (path) => {
+    // For Overview, make sure we're on the main dashboard page
+    if (path === '/dashboard' && (location.pathname === '/dashboard' || location.pathname === '/dashboard/')) {
+      return true;
+    }
+    // For other pages, check if the current path starts with the given path
+    return location.pathname.startsWith(path);
+  };
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -99,17 +112,18 @@ const Dashboard = () => {
         <aside className="w-64 fixed left-0 top-16 bottom-0 bg-white border-r border-gray-200 z-40 overflow-y-auto">
           <nav className="p-4 space-y-1">
             {sidebarItems.map((item) => (
-              <button
+              <Link
                 key={item.name}
-                className={`flex items-center space-x-3 w-full px-3 py-2 text-sm rounded-lg ${
-                  item.name === "Overview" 
+                to={item.path}
+                className={`flex items-center space-x-3 w-full px-3 py-2 text-sm rounded-lg transition-colors ${
+                  isLinkActive(item.path) 
                     ? "bg-emerald-50 text-emerald-600" 
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
                 <item.icon className="h-5 w-5" />
                 <span>{item.name}</span>
-              </button>
+              </Link>
             ))}
           </nav>
         </aside>
@@ -239,13 +253,13 @@ const Dashboard = () => {
 };
 
 const sidebarItems = [
-  { name: "Overview", icon: LayoutDashboard },
-  { name: "Classification", icon: Bird },
-  { name: "Environment", icon: ThermometerIcon },
-  { name: "Map", icon: Map },
-  { name: "Audio Library", icon: FileAudio },
-  { name: "Reports", icon: FileText },
-  { name: "Admin", icon: Settings },
+  { name: "Overview", icon: LayoutDashboard, path: "/dashboard" },
+  { name: "Classification", icon: Bird, path: "/dashboard/classification" },
+  { name: "Environment", icon: ThermometerIcon, path: "/dashboard/environment" },
+  { name: "Map", icon: Map, path: "/dashboard/map" },
+  { name: "Audio Library", icon: FileAudio, path: "/dashboard/audio-library" },
+  { name: "Reports", icon: FileText, path: "/dashboard/reports" },
+  { name: "Admin", icon: Settings, path: "/dashboard/admin" },
 ];
 
 const alerts = [
