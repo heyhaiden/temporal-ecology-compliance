@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Bird, ThermometerIcon, Map, FileAudio, FileText, Settings, Laptop } from "lucide-react";
+import { LayoutDashboard, Bird, ThermometerIcon, Map, FileAudio, FileText, Settings, Laptop, CloudSunRain } from "lucide-react";
 import { toast } from "sonner";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
@@ -136,7 +136,7 @@ const mainSidebarItems = [
   { name: "Overview", icon: LayoutDashboard, path: "/dashboard" },
   { name: "Devices", icon: Laptop, path: "/dashboard/devices" },
   { name: "Classification", icon: Bird, path: "/dashboard/classification" },
-  { name: "Environment", icon: ThermometerIcon, path: "/dashboard/environment" },
+  { name: "Environment", icon: CloudSunRain, path: "/dashboard/environment" },
   { name: "Map", icon: Map, path: "/dashboard/map" },
   { name: "Audio Library", icon: FileAudio, path: "/dashboard/audio-library" },
   { name: "Reports", icon: FileText, path: "/dashboard/reports" },
