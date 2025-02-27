@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { ChevronDown, Menu, Signal, FileCheck, Code2, Users, Leaf } from "lucide-react";
+import { ChevronDown, Menu, Signal, FileCheck, Building2, Users, Leaf } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -36,10 +36,10 @@ const Navbar = () => {
                     <div className="space-y-2">
                       <DropdownMenuItem>
                         <Link to="/solutions/for-developers" className="w-full flex items-center space-x-2 py-2">
-                          <Code2 className="h-5 w-5 text-emerald-600" />
+                          <Building2 className="h-5 w-5 text-emerald-600" />
                           <div>
                             <p className="font-medium">For Developers</p>
-                            <p className="text-xs text-gray-500">API & Integration tools</p>
+                            <p className="text-xs text-gray-500">Construction & planning tools</p>
                           </div>
                         </Link>
                       </DropdownMenuItem>
