@@ -4,10 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Contact = () => {
   const { toast } = useToast();
+  const [activeTab, setActiveTab] = useState("calendar");
   
   // Load Calendly script
   useEffect(() => {
@@ -16,10 +17,23 @@ const Contact = () => {
     script.async = true;
     document.body.appendChild(script);
 
+    // Refresh Calendly when switching back to the calendar tab
+    if (activeTab === "calendar") {
+      const calendlyWidget = document.querySelector('.calendly-inline-widget');
+      if (calendlyWidget) {
+        const url = calendlyWidget.getAttribute('data-url');
+        if (url) {
+          calendlyWidget.setAttribute('data-url', url);
+        }
+      }
+    }
+
     return () => {
+      // Only remove if the app is unmounting, not on tab switch
+      if (!document.body.contains(script)) return;
       document.body.removeChild(script);
     };
-  }, []);
+  }, [activeTab]);
   
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,10 +43,14 @@ const Contact = () => {
     });
   };
   
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+  };
+  
   return (
     <div className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-3xl"> {/* Increased max width from 2xl to 3xl */}
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
             Get in Touch
           </h2>
@@ -40,7 +58,7 @@ const Contact = () => {
             Schedule a call or send us a message. We're here to help with any questions about our solutions.
           </p>
 
-          <Tabs defaultValue="calendar" className="mt-16">
+          <Tabs defaultValue="calendar" className="mt-16" onValueChange={handleTabChange}>
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="calendar">Schedule a Call</TabsTrigger>
               <TabsTrigger value="message">Send a Message</TabsTrigger>
@@ -48,7 +66,11 @@ const Contact = () => {
             
             <TabsContent value="calendar" className="mt-6">
               {/* Calendly inline widget begin */}
-              <div className="calendly-inline-widget rounded-lg overflow-hidden" data-url="https://calendly.com/temporal-ai/new-meeting" style={{ minWidth: "320px", height: "700px" }}></div>
+              <div 
+                className="calendly-inline-widget rounded-lg overflow-hidden" 
+                data-url="https://calendly.com/temporal-ai/new-meeting" 
+                style={{ minWidth: "320px", height: "600px" }} // Reduced height from 700px to 600px
+              />
               {/* Calendly inline widget end */}
             </TabsContent>
             
