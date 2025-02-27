@@ -1,14 +1,20 @@
 
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import AudioAnnotation from "@/components/AudioAnnotation";
+import { toast } from "sonner";
 
 const Classification = () => {
+  const [selectedClassification, setSelectedClassification] = useState<string | null>(null);
+
   const classifications = [
-    { species: "Common Pipistrelle", time: "2023-05-15 22:30:00", confidence: 92 },
-    { species: "Soprano Pipistrelle", time: "2023-05-15 22:31:15", confidence: 87 },
-    { species: "Noctule", time: "2023-05-15 22:32:30", confidence: 79 },
-    { species: "Brown Long-eared Bat", time: "2023-05-15 22:33:45", confidence: 85 },
+    { species: "Common Pipistrelle", time: "2023-05-15 22:30:00", confidence: 92, audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Screech&filename=mz/Mzg1ODMxNTEzMzg1ODM3_JjbSeJPWExA.mp3" },
+    { species: "Soprano Pipistrelle", time: "2023-05-15 22:31:15", confidence: 87, audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Sound&filename=mz/Mzg1ODMxNTEzMzg1ODQz_JzPV7tBxSDk.mp3" },
+    { species: "Noctule", time: "2023-05-15 22:32:30", confidence: 79, audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Squeak&filename=mz/Mzg1ODMxNTEzMzg1ODM0_KzPGV7Ln7Jw.mp3" },
+    { species: "Brown Long-eared Bat", time: "2023-05-15 22:33:45", confidence: 85, audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Echo+Location&filename=mz/Mzg1ODMxNTEzMzg1ODI5_pEVmQVZQ19U.mp3" },
   ];
 
   const confidenceData = classifications.map(c => ({
@@ -16,11 +22,24 @@ const Classification = () => {
     confidence: c.confidence / 100
   }));
 
+  const selectedItem = selectedClassification 
+    ? classifications.find(c => c.species === selectedClassification) 
+    : null;
+
+  const handleOverrideSpecies = (species: string) => {
+    setSelectedClassification(species);
+  };
+
+  const handleSaveAnnotation = (annotations: any[]) => {
+    console.log("Saved annotations:", annotations);
+    toast.success(`Saved ${annotations.length} annotations for ${selectedClassification}`);
+  };
+
   return (
     <div className="p-8">
       <h1 className="text-2xl font-semibold text-gray-900 mb-8">Classification</h1>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <Card className="p-6">
           <h2 className="text-lg font-semibold mb-4">Real-Time Classification List</h2>
           <div className="space-y-4">
@@ -38,7 +57,13 @@ const Classification = () => {
                   }`}>
                     {item.confidence}%
                   </span>
-                  <Button variant="outline" size="sm">Override species</Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => handleOverrideSpecies(item.species)}
+                  >
+                    Annotate
+                  </Button>
                 </div>
               </div>
             ))}
@@ -67,6 +92,32 @@ const Classification = () => {
           </div>
         </Card>
       </div>
+
+      {selectedClassification && selectedItem && (
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold">Audio Annotation: {selectedClassification}</h2>
+            <Button 
+              variant="ghost" 
+              onClick={() => setSelectedClassification(null)}
+            >
+              Close
+            </Button>
+          </div>
+          <AudioAnnotation 
+            audioUrl={selectedItem.audioUrl}
+            onSaveAnnotation={handleSaveAnnotation}
+            initialLabels={[
+              {
+                id: "1",
+                startTime: 0.5,
+                endTime: 1.5,
+                label: selectedItem.species
+              }
+            ]}
+          />
+        </div>
+      )}
     </div>
   );
 };
