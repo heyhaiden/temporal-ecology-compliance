@@ -1,10 +1,8 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Battery, Wifi, AlertTriangle, Calendar, ChevronDown, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { 
   DropdownMenu,
   DropdownMenuContent,
@@ -141,7 +139,7 @@ const Overview = () => {
         ))}
       </div>
 
-      {/* Alerts and Device Health */}
+      {/* Alerts and Device Status */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <Card>
           <CardContent className="p-6">
@@ -159,7 +157,7 @@ const Overview = () => {
 
         <Card>
           <CardContent className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Device Health</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Device Status</h2>
             <div className="space-y-2">
               {devices.map((device) => (
                 <div key={device.id} className="border rounded-md">
