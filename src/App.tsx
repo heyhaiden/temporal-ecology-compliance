@@ -21,6 +21,7 @@ const Map = lazy(() => import("@/pages/dashboard/Map"));
 const AudioLibrary = lazy(() => import("@/pages/dashboard/AudioLibrary"));
 const Reports = lazy(() => import("@/pages/dashboard/Reports"));
 const Admin = lazy(() => import("@/pages/dashboard/Admin"));
+const Devices = lazy(() => import("@/pages/dashboard/Devices"));
 
 // Company pages
 const ForDevelopers = lazy(() => import("@/pages/solutions/ForDevelopers"));
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
       { 
         index: true, 
         element: <Overview /> 
+      },
+      { 
+        path: "devices", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Devices /></Suspense> 
       },
       { 
         path: "classification", 

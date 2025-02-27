@@ -41,14 +41,14 @@ const Dashboard = () => {
     setUserName("Demo User");
   };
 
-  // Helper function to determine if a link is active
+  // Improved helper function to determine if a link is active
   const isLinkActive = (path) => {
-    // For Overview, make sure we're on the main dashboard page
-    if (path === '/dashboard' && (location.pathname === '/dashboard' || location.pathname === '/dashboard/')) {
-      return true;
+    // For Overview, it should only be active when exactly on /dashboard or /dashboard/
+    if (path === '/dashboard') {
+      return location.pathname === '/dashboard' || location.pathname === '/dashboard/';
     }
-    // For other pages, check if the current path starts with the given path
-    return location.pathname.startsWith(path);
+    // For other pages, check for exact match or path starts with
+    return location.pathname === path || location.pathname.startsWith(`${path}/`);
   };
 
   if (loading) {
