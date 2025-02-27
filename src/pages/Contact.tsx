@@ -48,34 +48,33 @@ const Contact = () => {
   };
   
   return (
-    <div className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl"> {/* Increased max width from 2xl to 3xl */}
+    <div className="py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
             Get in Touch
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-4 text-lg leading-8 text-gray-600 text-center">
             Schedule a call or send us a message. We're here to help with any questions about our solutions.
           </p>
 
-          <Tabs defaultValue="calendar" className="mt-16" onValueChange={handleTabChange}>
-            <TabsList className="grid w-full grid-cols-2">
+          <Tabs defaultValue="calendar" className="mt-12" onValueChange={handleTabChange}>
+            <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="calendar">Schedule a Call</TabsTrigger>
               <TabsTrigger value="message">Send a Message</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="calendar" className="mt-6">
-              {/* Calendly inline widget begin */}
+            <TabsContent value="calendar" className="mt-2">
+              {/* Updated Calendly inline widget with new parameters */}
               <div 
-                className="calendly-inline-widget rounded-lg overflow-hidden" 
-                data-url="https://calendly.com/temporal-ai/new-meeting" 
-                style={{ minWidth: "320px", height: "500px" }} // Reduced height from 600px to 500px
+                className="calendly-inline-widget rounded-lg overflow-hidden border border-gray-200" 
+                data-url="https://calendly.com/temporal-ai/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1" 
+                style={{ minWidth: "320px", height: "700px" }} 
               />
-              {/* Calendly inline widget end */}
             </TabsContent>
             
             <TabsContent value="message">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6 p-2">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-gray-900">
                     Name
@@ -92,7 +91,7 @@ const Contact = () => {
                   <label htmlFor="message" className="text-sm font-medium text-gray-900">
                     Message
                   </label>
-                  <Textarea id="message" name="message" rows={6} required placeholder="How can we help you?" className="w-full" />
+                  <Textarea id="message" name="message" rows={10} required placeholder="How can we help you?" className="w-full" />
                 </div>
                 <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700">
                   Send Message
