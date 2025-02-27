@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Bird, ThermometerIcon, Map, FileAudio, FileText, Settings } from "lucide-react";
 import { toast } from "sonner";
 import { Link, useLocation, Outlet } from "react-router-dom";
+import { Separator } from "@/components/ui/separator";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -87,9 +88,9 @@ const Dashboard = () => {
       {/* Dashboard container with sidebar and main content */}
       <div className="flex pt-16 flex-grow">
         {/* Sidebar */}
-        <aside className="w-64 fixed left-0 top-16 bottom-0 bg-white border-r border-gray-200 z-40 overflow-y-auto">
-          <nav className="p-4 space-y-1">
-            {sidebarItems.map((item) => (
+        <aside className="w-64 fixed left-0 top-16 bottom-0 bg-white border-r border-gray-200 z-40 overflow-y-auto flex flex-col">
+          <nav className="p-4 space-y-1 flex-1">
+            {mainSidebarItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
@@ -104,6 +105,22 @@ const Dashboard = () => {
               </Link>
             ))}
           </nav>
+          
+          {/* Admin section at the bottom */}
+          <div className="p-4 mt-auto">
+            <Separator className="my-2" />
+            <Link
+              to="/dashboard/admin"
+              className={`flex items-center space-x-3 w-full px-3 py-2 text-sm rounded-lg transition-colors ${
+                isLinkActive('/dashboard/admin') 
+                  ? "bg-emerald-50 text-emerald-600" 
+                  : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <Settings className="h-5 w-5" />
+              <span>Admin</span>
+            </Link>
+          </div>
         </aside>
 
         {/* Main Content - This will render the child routes */}
@@ -115,14 +132,13 @@ const Dashboard = () => {
   );
 };
 
-const sidebarItems = [
+const mainSidebarItems = [
   { name: "Overview", icon: LayoutDashboard, path: "/dashboard" },
   { name: "Classification", icon: Bird, path: "/dashboard/classification" },
   { name: "Environment", icon: ThermometerIcon, path: "/dashboard/environment" },
   { name: "Map", icon: Map, path: "/dashboard/map" },
   { name: "Audio Library", icon: FileAudio, path: "/dashboard/audio-library" },
   { name: "Reports", icon: FileText, path: "/dashboard/reports" },
-  { name: "Admin", icon: Settings, path: "/dashboard/admin" },
 ];
 
 export default Dashboard;

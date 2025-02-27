@@ -2,8 +2,16 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { Battery, Wifi, AlertTriangle } from "lucide-react";
+import { Battery, Wifi, AlertTriangle, Calendar, ChevronDown, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 const Overview = () => {
   const [stats, setStats] = useState({
@@ -12,11 +20,14 @@ const Overview = () => {
     humidity: "68%",
     uptime: "99.9%"
   });
+  
+  const [timeframe, setTimeframe] = useState("month");
+  const [expandedDevice, setExpandedDevice] = useState(null);
 
   useEffect(() => {
     // Load dashboard data
     loadDashboardData();
-  }, []);
+  }, [timeframe]);
 
   const loadDashboardData = () => {
     try {
@@ -33,10 +44,79 @@ const Overview = () => {
     }
   };
 
+  const devices = [
+    { 
+      id: 1, 
+      name: "BatBox-1", 
+      status: "online", 
+      battery: "85%", 
+      connection: "Strong",
+      location: "Forest Edge",
+      lastUpdate: "2 mins ago"
+    },
+    { 
+      id: 2, 
+      name: "BatBox-2", 
+      status: "online", 
+      battery: "67%", 
+      connection: "Medium",
+      location: "Lakeside",
+      lastUpdate: "15 mins ago" 
+    },
+    { 
+      id: 3, 
+      name: "BirdBox-1", 
+      status: "offline", 
+      battery: "12%", 
+      connection: "Disconnected",
+      location: "Oak Tree",
+      lastUpdate: "2 hours ago" 
+    },
+  ];
+
+  const toggleDeviceExpand = (deviceId) => {
+    if (expandedDevice === deviceId) {
+      setExpandedDevice(null);
+    } else {
+      setExpandedDevice(deviceId);
+    }
+  };
+
   return (
     <div className="p-8">
-      <div className="mb-8">
+      <div className="mb-8 flex justify-between items-center">
         <h1 className="text-2xl font-semibold text-gray-900">Overview</h1>
+        
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="gap-2">
+              <Calendar className="h-4 w-4" />
+              {timeframe === "day" && "Last Day"}
+              {timeframe === "week" && "Last Week"}
+              {timeframe === "month" && "Last Month"}
+              {timeframe === "quarter" && "Last Quarter"}
+              {timeframe === "custom" && "Custom Range"}
+              <ChevronDown className="h-4 w-4 ml-2" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuItem onClick={() => setTimeframe("day")}>
+              Last Day
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTimeframe("week")}>
+              Last Week
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTimeframe("month")}>
+              Last Month
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTimeframe("quarter")}>
+              Last Quarter
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTimeframe("custom")}>
+              Custom Range
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       {/* Stats Grid */}
@@ -61,7 +141,7 @@ const Overview = () => {
         ))}
       </div>
 
-      {/* Alerts and Classifications */}
+      {/* Alerts and Device Health */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <Card>
           <CardContent className="p-6">
@@ -79,72 +159,61 @@ const Overview = () => {
 
         <Card>
           <CardContent className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Live Classification</h2>
-            <div className="space-y-4">
-              {classifications.map((classification) => (
-                <div key={classification.name} className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium text-gray-900">{classification.name}</p>
-                    <p className="text-sm text-gray-500">{classification.time}</p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-emerald-600"
-                        style={{ width: `${classification.confidence}%` }}
-                      />
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Device Health</h2>
+            <div className="space-y-2">
+              {devices.map((device) => (
+                <div key={device.id} className="border rounded-md">
+                  <div 
+                    className={`flex items-center justify-between p-3 cursor-pointer ${
+                      device.status === 'online' ? 'border-l-4 border-l-emerald-500' : 'border-l-4 border-l-red-500'
+                    }`}
+                    onClick={() => toggleDeviceExpand(device.id)}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">{device.name}</span>
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${
+                        device.status === 'online' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
+                      }`}>
+                        {device.status}
+                      </span>
                     </div>
-                    <span className="text-sm text-gray-600">{classification.confidence}%</span>
+                    <ChevronRight className={`h-5 w-5 text-gray-400 transition-transform ${
+                      expandedDevice === device.id ? 'rotate-90' : ''
+                    }`} />
                   </div>
+                  
+                  {expandedDevice === device.id && (
+                    <div className="p-3 border-t bg-gray-50">
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            <Battery className="h-4 w-4 text-gray-500" />
+                            <span className="text-sm text-gray-600">Battery</span>
+                          </div>
+                          <span className={`text-sm font-medium ${
+                            parseInt(device.battery) < 20 ? 'text-red-600' : 'text-gray-800'
+                          }`}>{device.battery}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            <Wifi className="h-4 w-4 text-gray-500" />
+                            <span className="text-sm text-gray-600">Connection</span>
+                          </div>
+                          <span className="text-sm font-medium text-gray-800">{device.connection}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">Location</span>
+                          <span className="text-sm font-medium text-gray-800">{device.location}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">Last Update</span>
+                          <span className="text-sm font-medium text-gray-800">{device.lastUpdate}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Environment Metrics and Device Health */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
-          <CardContent className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Environment Metrics</h2>
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={environmentData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
-                  <XAxis dataKey="time" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line
-                    type="monotone"
-                    dataKey="value"
-                    stroke="#059669"
-                    strokeWidth={2}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Device Health</h2>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Battery className="h-5 w-5 text-emerald-600" />
-                  <span className="text-gray-700">Battery</span>
-                </div>
-                <span className="text-gray-900 font-medium">85%</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Wifi className="h-5 w-5 text-emerald-600" />
-                  <span className="text-gray-700">Connection</span>
-                </div>
-                <span className="text-gray-900 font-medium">Strong</span>
-              </div>
             </div>
           </CardContent>
         </Card>
@@ -157,24 +226,6 @@ const alerts = [
   { message: "Sensor 3 offline for 2 hours", icon: Wifi, iconColor: "text-red-500" },
   { message: "Sensor 2 battery low (15%)", icon: Battery, iconColor: "text-amber-500" },
   { message: "Unusual spike in bat activity", icon: AlertTriangle, iconColor: "text-emerald-500" },
-];
-
-const classifications = [
-  { name: "Common Pipistrelle", time: "2 mins ago", confidence: 92 },
-  { name: "Soprano Pipistrelle", time: "5 mins ago", confidence: 87 },
-  { name: "Noctule", time: "12 mins ago", confidence: 79 },
-  { name: "Brown Long-eared Bat", time: "18 mins ago", confidence: 85 },
-  { name: "European Robin", time: "25 mins ago", confidence: 91 },
-];
-
-const environmentData = [
-  { time: "00:00", value: 400 },
-  { time: "04:00", value: 600 },
-  { time: "08:00", value: 800 },
-  { time: "12:00", value: 1000 },
-  { time: "16:00", value: 800 },
-  { time: "20:00", value: 600 },
-  { time: "24:00", value: 400 },
 ];
 
 export default Overview;
