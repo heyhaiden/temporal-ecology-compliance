@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -67,11 +68,10 @@ const Dashboard = () => {
         <div className="flex items-center gap-2">
           <img src="/lovable-uploads/35e560b4-c9cc-4388-80b3-722cfa45b123.png" alt="Logo" className="h-8 w-auto" />
           <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
-            BatDetect
+            Temporal
           </h1>
         </div>
         <div className="flex items-center gap-4">
-          <div className="text-sm text-gray-600">Dashboard</div>
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
               {userName.charAt(0).toUpperCase()}
