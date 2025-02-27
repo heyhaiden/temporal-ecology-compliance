@@ -69,7 +69,7 @@ const Contact = () => {
               <div 
                 className="calendly-inline-widget rounded-lg overflow-hidden" 
                 data-url="https://calendly.com/temporal-ai/new-meeting" 
-                style={{ minWidth: "320px", height: "600px" }} // Reduced height from 700px to 600px
+                style={{ minWidth: "320px", height: "500px" }} // Reduced height from 600px to 500px
               />
               {/* Calendly inline widget end */}
             </TabsContent>
