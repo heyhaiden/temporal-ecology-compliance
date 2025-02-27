@@ -39,7 +39,7 @@ const Navbar = () => {
                           <Building2 className="h-5 w-5 text-emerald-600" />
                           <div>
                             <p className="font-medium">For Developers</p>
-                            <p className="text-xs text-gray-500">Construction & planning tools</p>
+                            <p className="text-xs text-gray-500">Compliance & planning tools</p>
                           </div>
                         </Link>
                       </DropdownMenuItem>
@@ -48,7 +48,7 @@ const Navbar = () => {
                           <Users className="h-5 w-5 text-emerald-600" />
                           <div>
                             <p className="font-medium">For Land Managers</p>
-                            <p className="text-xs text-gray-500">Site management tools</p>
+                            <p className="text-xs text-gray-500">Monitoring Habitat Banks</p>
                           </div>
                         </Link>
                       </DropdownMenuItem>
@@ -57,7 +57,7 @@ const Navbar = () => {
                           <Leaf className="h-5 w-5 text-emerald-600" />
                           <div>
                             <p className="font-medium">For Ecologists</p>
-                            <p className="text-xs text-gray-500">Biodiversity assessment</p>
+                            <p className="text-xs text-gray-500">Assessment Tooling</p>
                           </div>
                         </Link>
                       </DropdownMenuItem>
@@ -70,7 +70,7 @@ const Navbar = () => {
                           <Signal className="h-5 w-5 text-emerald-600" />
                           <div>
                             <p className="font-medium">Habitat Monitoring</p>
-                            <p className="text-xs text-gray-500">Real-time habitat tracking</p>
+                            <p className="text-xs text-gray-500">Long-term habitat tracking</p>
                           </div>
                         </Link>
                       </DropdownMenuItem>
