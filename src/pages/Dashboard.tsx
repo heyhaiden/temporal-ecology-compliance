@@ -1,6 +1,4 @@
-
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,7 +7,6 @@ import { Battery, Wifi, AlertTriangle, ThermometerIcon, Signal, LayoutDashboard,
 import { toast } from "sonner";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
     detections: "1,234",
@@ -19,36 +16,33 @@ const Dashboard = () => {
   });
   const [userName, setUserName] = useState("Demo User");
   
-  // Check authentication
+  // Load dashboard data
   useEffect(() => {
-    const checkAuth = async () => {
+    const loadDashboardData = async () => {
       try {
+        // Try to get user session if available
         const { data: { session } } = await supabase.auth.getSession();
-        if (!session) {
-          navigate("/auth");
-          return;
-        }
         
-        // Set a default user name (could be taken from session if available)
-        setUserName(session.user.email?.split('@')[0] || "User");
+        // Set username from session if available, otherwise use demo user
+        if (session?.user) {
+          setUserName(session.user.email?.split('@')[0] || "User");
+        }
         
         // Load dummy data
         loadDummyData();
       } catch (error) {
-        console.error("Error checking auth:", error);
-        toast.error("Authentication error. Please sign in again.");
-        navigate("/auth");
+        console.error("Error loading dashboard data:", error);
+        toast.error("Could not load dashboard data");
       } finally {
         setLoading(false);
       }
     };
     
-    checkAuth();
-  }, [navigate]);
+    loadDashboardData();
+  }, []);
   
   const loadDummyData = () => {
     // This function just sets our predefined stats
-    // No Supabase queries that could cause errors
     setStats({
       detections: "1,234",
       temperature: "22°C",
@@ -59,7 +53,9 @@ const Dashboard = () => {
   
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    navigate("/auth");
+    // Keep the user on dashboard page, don't redirect
+    toast.success("Signed out successfully");
+    setUserName("Demo User");
   };
 
   if (loading) {
