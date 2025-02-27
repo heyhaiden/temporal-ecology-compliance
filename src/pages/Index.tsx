@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, LineChart, Cloud, FileText } from "lucide-react";
@@ -32,9 +33,9 @@ const Index = () => {
             </div>
             <div className="relative">
               <img
-                src="/placeholder.svg"
-                alt="Monitoring Device"
-                className="rounded-xl shadow-xl ring-1 ring-gray-400/10"
+                src="https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&h=1200&q=80"
+                alt="Environmental monitoring in natural habitat"
+                className="rounded-xl shadow-xl ring-1 ring-gray-400/10 aspect-square object-cover"
               />
             </div>
           </div>
