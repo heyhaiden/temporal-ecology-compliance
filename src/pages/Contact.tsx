@@ -47,16 +47,15 @@ const Contact = () => {
             </TabsList>
             
             <TabsContent value="calendar" className="mt-6">
-              <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-                <div 
-                  className="calendly-inline-widget" 
-                  data-url="https://calendly.com/temporal-ai/" 
-                  style={{
-                    minWidth: '320px',
-                    height: '700px'
-                  }} 
-                />
-              </div>
+              {/* Removed the outer card div to prevent double boxing */}
+              <div 
+                className="calendly-inline-widget rounded-lg overflow-hidden bg-white" 
+                data-url="https://calendly.com/temporal-ai/new-meeting" 
+                style={{
+                  minWidth: '320px',
+                  height: '700px'
+                }} 
+              />
             </TabsContent>
             
             <TabsContent value="message">
