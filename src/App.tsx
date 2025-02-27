@@ -13,6 +13,7 @@ import InfrastructureProject from "./pages/case-studies/InfrastructureProject";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 import HabitatMonitoring from "./pages/solutions/HabitatMonitoring";
@@ -46,6 +47,7 @@ const App = () => {
               <Route path="/resources" element={<Resources />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

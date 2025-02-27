@@ -4,20 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { Battery, Wifi, AlertTriangle, ThermometerIcon, Droplets, Signal, LayoutDashboard, Bird, Map, FileAudio, FileText, Settings } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { Battery, Wifi, AlertTriangle, ThermometerIcon, Signal, LayoutDashboard, Bird, Map, FileAudio, FileText, Settings } from "lucide-react";
 import { toast } from "sonner";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
-    detections: "0",
-    temperature: "0°C",
-    humidity: "0%",
-    uptime: "0%"
+    detections: "1,234",
+    temperature: "22°C",
+    humidity: "68%",
+    uptime: "99.9%"
   });
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("Demo User");
   
   // Check authentication
   useEffect(() => {
@@ -29,19 +29,11 @@ const Dashboard = () => {
           return;
         }
         
-        // Get user profile
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("full_name")
-          .eq("id", session.user.id)
-          .single();
-          
-        if (profile) {
-          setUserName(profile.full_name || session.user.email || "User");
-        }
+        // Set a default user name (could be taken from session if available)
+        setUserName(session.user.email?.split('@')[0] || "User");
         
-        // Load data
-        await fetchDashboardData();
+        // Load dummy data
+        loadDummyData();
       } catch (error) {
         console.error("Error checking auth:", error);
         toast.error("Authentication error. Please sign in again.");
@@ -54,32 +46,15 @@ const Dashboard = () => {
     checkAuth();
   }, [navigate]);
   
-  const fetchDashboardData = async () => {
-    try {
-      // Get device readings
-      const { data: readings } = await supabase
-        .from("device_readings")
-        .select("temperature, humidity, battery_level")
-        .order("recorded_at", { ascending: false })
-        .limit(1);
-        
-      // Get detection count
-      const { count } = await supabase
-        .from("detections")
-        .select("*", { count: "exact", head: true });
-        
-      if (readings && readings.length > 0) {
-        setStats({
-          detections: count?.toString() || "1,234",
-          temperature: `${Math.round(readings[0].temperature)}°C`,
-          humidity: `${Math.round(readings[0].humidity)}%`,
-          uptime: "99.9%"
-        });
-      }
-    } catch (error) {
-      console.error("Error fetching dashboard data:", error);
-      toast.error("Failed to load dashboard data.");
-    }
+  const loadDummyData = () => {
+    // This function just sets our predefined stats
+    // No Supabase queries that could cause errors
+    setStats({
+      detections: "1,234",
+      temperature: "22°C",
+      humidity: "68%",
+      uptime: "99.9%"
+    });
   };
   
   const handleSignOut = async () => {
