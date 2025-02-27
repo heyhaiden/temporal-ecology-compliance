@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import AudioAnnotation from "@/components/AudioAnnotation";
 import { toast } from "sonner";
 import { 
@@ -19,7 +18,8 @@ import {
   Check,
   X,
   Edit,
-  Trash2
+  Trash2,
+  Speaker
 } from "lucide-react";
 
 const Classification = () => {
@@ -67,6 +67,71 @@ const Classification = () => {
       verified: false,
       audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Echo+Location&filename=mz/Mzg1ODMxNTEzMzg1ODI5_pEVmQVZQ19U.mp3" 
     },
+    // Additional test entries
+    { 
+      id: "5",
+      species: "Lesser Horseshoe Bat", 
+      time: "2023-05-15 23:10:22", 
+      confidence: 76, 
+      verified: false,
+      audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Screech&filename=mz/Mzg1ODMxNTEzMzg1ODM3_JjbSeJPWExA.mp3" 
+    },
+    { 
+      id: "6",
+      species: "Greater Horseshoe Bat", 
+      time: "2023-05-15 23:21:33", 
+      confidence: 94, 
+      verified: true,
+      audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Sound&filename=mz/Mzg1ODMxNTEzMzg1ODQz_JzPV7tBxSDk.mp3" 
+    },
+    { 
+      id: "7",
+      species: "Daubenton's Bat", 
+      time: "2023-05-15 23:42:50", 
+      confidence: 81, 
+      verified: false,
+      audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Squeak&filename=mz/Mzg1ODMxNTEzMzg1ODM0_KzPGV7Ln7Jw.mp3" 
+    },
+    { 
+      id: "8",
+      species: "Nathusius' Pipistrelle", 
+      time: "2023-05-15 23:55:12", 
+      confidence: 68, 
+      verified: false,
+      audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Echo+Location&filename=mz/Mzg1ODMxNTEzMzg1ODI5_pEVmQVZQ19U.mp3" 
+    },
+    { 
+      id: "9",
+      species: "Whiskered Bat", 
+      time: "2023-05-16 00:05:45", 
+      confidence: 73, 
+      verified: false,
+      audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Screech&filename=mz/Mzg1ODMxNTEzMzg1ODM3_JjbSeJPWExA.mp3" 
+    },
+    { 
+      id: "10",
+      species: "Brandt's Bat", 
+      time: "2023-05-16 00:18:29", 
+      confidence: 89, 
+      verified: false,
+      audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Sound&filename=mz/Mzg1ODMxNTEzMzg1ODQz_JzPV7tBxSDk.mp3" 
+    },
+    { 
+      id: "11",
+      species: "Natterer's Bat", 
+      time: "2023-05-16 00:32:14", 
+      confidence: 82, 
+      verified: false,
+      audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Squeak&filename=mz/Mzg1ODMxNTEzMzg1ODM0_KzPGV7Ln7Jw.mp3" 
+    },
+    { 
+      id: "12",
+      species: "Serotine", 
+      time: "2023-05-16 00:47:38", 
+      confidence: 91, 
+      verified: false,
+      audioUrl: "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Bat+Echo+Location&filename=mz/Mzg1ODMxNTEzMzg1ODI5_pEVmQVZQ19U.mp3" 
+    }
   ]);
 
   // Filter and sort classifications
@@ -167,6 +232,23 @@ const Classification = () => {
     toast.success("Classification removed!");
   };
 
+  const playAudio = (url: string) => {
+    const audio = new Audio(url);
+    audio.play();
+    toast.info("Playing audio");
+  };
+
+  // Format date and time in a more readable way
+  const formatDateTime = (dateTimeString: string) => {
+    const date = new Date(dateTimeString);
+    return date.toLocaleString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
   const renderClassificationList = () => {
     return (
       <div className="space-y-4">
@@ -191,58 +273,60 @@ const Classification = () => {
               </div>
             ) : (
               <>
-                <div>
-                  <div className="font-medium flex items-center gap-2">
-                    {item.species}
-                    {item.verified && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                        <Check className="h-3 w-3 mr-1" /> Verified
+                <div className="flex items-center gap-3">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 w-8 p-0 rounded-full"
+                    onClick={() => playAudio(item.audioUrl)}
+                  >
+                    <Speaker className="h-4 w-4 text-primary" />
+                  </Button>
+                  <div>
+                    <div className="font-medium flex items-center gap-2">
+                      {item.species}
+                      {item.verified && (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                          <Check className="h-3 w-3 mr-1" /> Verified
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center text-sm text-gray-500 gap-3">
+                      <span>{formatDateTime(item.time)}</span>
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
+                        item.confidence >= 90 ? 'bg-emerald-100 text-emerald-800' :
+                        item.confidence >= 80 ? 'bg-blue-100 text-blue-800' :
+                        'bg-amber-100 text-amber-800'
+                      }`}>
+                        {item.confidence}% match
                       </span>
-                    )}
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-500">{item.time}</div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                    item.confidence >= 90 ? 'bg-emerald-100 text-emerald-800' :
-                    item.confidence >= 80 ? 'bg-blue-100 text-blue-800' :
-                    'bg-amber-100 text-amber-800'
-                  }`}>
-                    {item.confidence}%
-                  </span>
-                  <div className="flex items-center">
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleVerifyClassification(item.id)}
-                      title="Verify correct classification"
-                    >
-                      <Check className="h-4 w-4 text-green-600" />
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleStartEdit(item.id, item.species)}
-                      title="Edit species name"
-                    >
-                      <Edit className="h-4 w-4 text-blue-600" />
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleDeleteClassification(item.id)}
-                      title="Delete entry (no bat detected)"
-                    >
-                      <Trash2 className="h-4 w-4 text-red-600" />
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => handleAnnotate(item.id)}
-                    >
-                      Annotate
-                    </Button>
-                  </div>
+                  <Button 
+                    variant="default" 
+                    size="sm"
+                    onClick={() => handleVerifyClassification(item.id)}
+                    className="bg-green-600 hover:bg-green-700"
+                  >
+                    <Check className="h-4 w-4 mr-1" /> Confirm
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => handleAnnotate(item.id)}
+                  >
+                    Review
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => handleDeleteClassification(item.id)}
+                    className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
                 </div>
               </>
             )}
@@ -276,57 +360,58 @@ const Classification = () => {
               </div>
             ) : (
               <>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-3">
                   <div className="font-medium">{item.species}</div>
-                  {item.verified && (
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                      <Check className="h-3 w-3 mr-1" /> Verified
-                    </span>
-                  )}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 w-8 p-0 rounded-full"
+                    onClick={() => playAudio(item.audioUrl)}
+                  >
+                    <Speaker className="h-4 w-4 text-primary" />
+                  </Button>
                 </div>
-                <div className="text-sm text-gray-500 mb-3">{item.time}</div>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-sm text-gray-500">{formatDateTime(item.time)}</span>
+                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                     item.confidence >= 90 ? 'bg-emerald-100 text-emerald-800' :
                     item.confidence >= 80 ? 'bg-blue-100 text-blue-800' :
                     'bg-amber-100 text-amber-800'
                   }`}>
-                    {item.confidence}%
+                    {item.confidence}% match
                   </span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-1">
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleVerifyClassification(item.id)}
-                      title="Verify correct classification"
-                    >
-                      <Check className="h-4 w-4 text-green-600" />
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleStartEdit(item.id, item.species)}
-                      title="Edit species name"
-                    >
-                      <Edit className="h-4 w-4 text-blue-600" />
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleDeleteClassification(item.id)}
-                      title="Delete entry (no bat detected)"
-                    >
-                      <Trash2 className="h-4 w-4 text-red-600" />
-                    </Button>
+                {item.verified && (
+                  <div className="mb-3">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <Check className="h-3 w-3 mr-1" /> Verified
+                    </span>
                   </div>
+                )}
+                <div className="flex gap-2 mt-2">
+                  <Button 
+                    variant="default" 
+                    size="sm"
+                    onClick={() => handleVerifyClassification(item.id)}
+                    className="bg-green-600 hover:bg-green-700 flex-1"
+                  >
+                    <Check className="h-4 w-4 mr-1" /> Confirm
+                  </Button>
                   <Button 
                     variant="outline" 
                     size="sm"
                     onClick={() => handleAnnotate(item.id)}
+                    className="flex-1"
                   >
-                    Annotate
+                    Review
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => handleDeleteClassification(item.id)}
+                    className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                  >
+                    <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
               </>
