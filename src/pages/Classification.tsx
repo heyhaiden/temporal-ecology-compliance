@@ -78,8 +78,10 @@ const Classification = () => {
                 <LineChart data={confidenceData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
                   <XAxis dataKey="time" />
-                  <YAxis domain={[0, 1]} tickFormatter={(tick) => `${tick * 100}%`} />
-                  <Tooltip formatter={(value) => [`${value * 100}%`, 'Confidence']} />
+                  <YAxis domain={[0, 1]} tickFormatter={(tick) => `${(tick * 100)}%`} />
+                  <Tooltip 
+                    formatter={(value: number) => [`${(value * 100).toFixed(0)}%`, 'Confidence']} 
+                  />
                   <Line 
                     type="monotone" 
                     dataKey="confidence" 
