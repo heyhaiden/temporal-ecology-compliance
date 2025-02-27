@@ -1,20 +1,32 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Auth = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
 
   useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        navigate('/dashboard');
+      }
+    };
+    
+    checkSession();
+    
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        navigate('/');
+        navigate('/dashboard');
       }
     });
 
@@ -23,36 +35,41 @@ const Auth = () => {
     };
   }, [navigate]);
 
-  const handleEmailSignIn = async (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    
     try {
-      setLoading(true);
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) throw error;
-    } catch (error) {
-      console.error('Error signing in:', error);
+      if (isLogin) {
+        // Handle login
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        
+        if (error) throw error;
+      } else {
+        // Handle signup
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: fullName,
+            }
+          }
+        });
+        
+        if (error) throw error;
+        
+        toast.success("Account created! You can now sign in.");
+        setIsLogin(true);
+      }
+    } catch (error: any) {
+      console.error('Authentication error:', error);
+      toast.error(error.message || "Authentication failed");
     } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleGoogleSignIn = async () => {
-    try {
-      setLoading(true);
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth`,
-        },
-      });
-      if (error) throw error;
-    } catch (error) {
-      console.error('Error signing in with Google:', error);
-    } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -66,14 +83,31 @@ const Auth = () => {
             alt="Temporal"
           />
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Sign in to your account
+            {isLogin ? 'Sign in to your account' : 'Create a new account'}
           </h2>
         </div>
 
-        <form className="mt-8 space-y-6" onSubmit={handleEmailSignIn}>
+        <form className="mt-8 space-y-6" onSubmit={handleAuth}>
           <div className="space-y-4 rounded-md">
+            {!isLogin && (
+              <div>
+                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+                  Full Name
+                </label>
+                <Input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  required={!isLogin}
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Full name"
+                  className="w-full mt-1"
+                />
+              </div>
+            )}
             <div>
-              <label htmlFor="email" className="sr-only">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email address
               </label>
               <Input
@@ -85,67 +119,69 @@ const Auth = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email address"
-                className="w-full"
+                className="w-full mt-1"
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <Input
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete={isLogin ? "current-password" : "new-password"}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="w-full"
+                className="w-full mt-1"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="text-sm">
-              <a href="#" className="font-medium text-emerald-600 hover:text-emerald-500">
-                Forgot your password?
-              </a>
+          {isLogin && (
+            <div className="flex items-center justify-between">
+              <div className="text-sm">
+                <button 
+                  type="button" 
+                  className="font-medium text-emerald-600 hover:text-emerald-500"
+                  onClick={() => alert("Password reset functionality will be added soon.")}
+                >
+                  Forgot your password?
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
           <div>
             <Button
               type="submit"
-              disabled={loading}
+              disabled={isLoading}
               className="w-full bg-emerald-600 hover:bg-emerald-700"
             >
-              {loading ? 'Signing in...' : 'Sign in'}
+              {isLoading 
+                ? 'Processing...' 
+                : isLogin 
+                  ? 'Sign in' 
+                  : 'Sign up'
+              }
             </Button>
           </div>
         </form>
 
-        <div className="relative mt-6">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300" />
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="bg-white px-2 text-gray-500">Or continue with</span>
-          </div>
+        <div className="text-center">
+          <button
+            type="button"
+            className="text-sm font-medium text-emerald-600 hover:text-emerald-500"
+            onClick={() => setIsLogin(!isLogin)}
+          >
+            {isLogin 
+              ? "Don't have an account? Sign up" 
+              : "Already have an account? Sign in"
+            }
+          </button>
         </div>
-
-        <Button
-          onClick={handleGoogleSignIn}
-          disabled={loading}
-          className="w-full bg-white text-gray-900 border border-gray-300 hover:bg-gray-50"
-        >
-          <img
-            className="h-5 w-5 mr-2"
-            src="https://www.google.com/favicon.ico"
-            alt="Google"
-          />
-          {loading ? 'Signing in...' : 'Sign in with Google'}
-        </Button>
       </div>
     </div>
   );
