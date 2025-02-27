@@ -1,8 +1,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
-import SpectrogramPlugin from 'wavesurfer.js/dist/plugins/spectrogram';
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Play, Pause, ZoomIn, ZoomOut, Save } from 'lucide-react';
@@ -24,6 +23,7 @@ const AudioAnnotation: React.FC<AudioAnnotationProps> = ({
   onSaveAnnotation 
 }) => {
   const waveformRef = useRef<HTMLDivElement>(null);
+  const spectrogramRef = useRef<HTMLDivElement>(null);
   const wavesurfer = useRef<WaveSurfer | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [zoom, setZoom] = useState(50);
@@ -49,25 +49,13 @@ const AudioAnnotation: React.FC<AudioAnnotationProps> = ({
         responsive: true,
         height: 150,
         normalize: true,
+        plugins: []
       };
 
       wavesurfer.current = WaveSurfer.create(options);
       
       // Load the audio file
       wavesurfer.current.load(audioUrl);
-
-      // Add the spectrogram plugin
-      if (wavesurfer.current) {
-        wavesurfer.current.registerPlugin(
-          SpectrogramPlugin.create({
-            container: waveformRef.current,
-            labels: true,
-            height: 150,
-            frequencyMin: 0,
-            frequencyMax: 20000,
-          })
-        );
-      }
 
       // Event handlers
       wavesurfer.current.on('ready', () => {
