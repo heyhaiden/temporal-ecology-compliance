@@ -64,22 +64,24 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-50 flex items-center justify-between px-4">
-        <div className="flex items-center gap-2">
-          <img src="/lovable-uploads/35e560b4-c9cc-4388-80b3-722cfa45b123.png" alt="Logo" className="h-8 w-auto" />
-          <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
-            Temporal
-          </h1>
-        </div>
-        <div className="flex items-center gap-4">
+      <header className="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-md border-b z-50 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
-              {userName.charAt(0).toUpperCase()}
+            <img src="/lovable-uploads/35e560b4-c9cc-4388-80b3-722cfa45b123.png" alt="Logo" className="h-8 w-auto" />
+            <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
+              Temporal
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                {userName.charAt(0).toUpperCase()}
+              </div>
+              <span className="text-sm font-medium">{userName}</span>
+              <Button variant="ghost" size="sm" onClick={handleSignOut}>
+                Sign out
+              </Button>
             </div>
-            <span className="text-sm font-medium">{userName}</span>
-            <Button variant="ghost" size="sm" onClick={handleSignOut}>
-              Sign out
-            </Button>
           </div>
         </div>
       </header>
