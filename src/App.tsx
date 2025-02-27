@@ -1,60 +1,145 @@
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import Pricing from "./pages/Pricing";
-import Solutions from "./pages/Solutions";
-import CaseStudy from "./pages/CaseStudy";
-import HousingDevelopment from "./pages/case-studies/HousingDevelopment";
-import InfrastructureProject from "./pages/case-studies/InfrastructureProject";
-import Resources from "./pages/Resources";
-import Contact from "./pages/Contact";
-import Auth from "./pages/Auth";
-import Dashboard from "./pages/Dashboard";
-import NotFound from "./pages/NotFound";
-import Layout from "./components/Layout";
-import HabitatMonitoring from "./pages/solutions/HabitatMonitoring";
-import ComplianceReporting from "./pages/solutions/ComplianceReporting";
-import ForDevelopers from "./pages/solutions/ForDevelopers";
-import ForLandManagers from "./pages/solutions/ForLandManagers";
-import ForEcologists from "./pages/solutions/ForEcologists";
+import { Suspense, lazy } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Toaster } from "@/components/ui/sonner";
+import Layout from "@/components/Layout";
+import Index from "@/pages/Index";
+import Solutions from "@/pages/Solutions";
+import CaseStudy from "@/pages/CaseStudy";
+import Pricing from "@/pages/Pricing";
+import Resources from "@/pages/Resources";
+import Contact from "@/pages/Contact";
+import Auth from "@/pages/Auth";
+import NotFound from "@/pages/NotFound";
+import Dashboard from "@/pages/Dashboard";
+import Overview from "@/pages/dashboard/Overview";
 
-const queryClient = new QueryClient();
+// Lazy-loaded dashboard pages
+const Classification = lazy(() => import("@/pages/dashboard/Classification"));
+const Environment = lazy(() => import("@/pages/dashboard/Environment"));
+const Map = lazy(() => import("@/pages/dashboard/Map"));
+const AudioLibrary = lazy(() => import("@/pages/dashboard/AudioLibrary"));
+const Reports = lazy(() => import("@/pages/dashboard/Reports"));
+const Admin = lazy(() => import("@/pages/dashboard/Admin"));
 
-const App = () => {
+// Company pages
+const ForDevelopers = lazy(() => import("@/pages/solutions/ForDevelopers"));
+const ForEcologists = lazy(() => import("@/pages/solutions/ForEcologists"));
+const ForLandManagers = lazy(() => import("@/pages/solutions/ForLandManagers"));
+const ComplianceReporting = lazy(() => import("@/pages/solutions/ComplianceReporting"));
+const HabitatMonitoring = lazy(() => import("@/pages/solutions/HabitatMonitoring"));
+
+// Case studies
+const HousingDevelopment = lazy(() => import("@/pages/case-studies/HousingDevelopment"));
+const InfrastructureProject = lazy(() => import("@/pages/case-studies/InfrastructureProject"));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <NotFound />,
+    children: [
+      { 
+        index: true, 
+        element: <Index /> 
+      },
+      { 
+        path: "solutions", 
+        element: <Solutions /> 
+      },
+      { 
+        path: "solutions/developers", 
+        element: <Suspense fallback={<div>Loading...</div>}><ForDevelopers /></Suspense> 
+      },
+      { 
+        path: "solutions/ecologists", 
+        element: <Suspense fallback={<div>Loading...</div>}><ForEcologists /></Suspense> 
+      },
+      { 
+        path: "solutions/land-managers", 
+        element: <Suspense fallback={<div>Loading...</div>}><ForLandManagers /></Suspense> 
+      },
+      { 
+        path: "solutions/compliance-reporting", 
+        element: <Suspense fallback={<div>Loading...</div>}><ComplianceReporting /></Suspense> 
+      },
+      { 
+        path: "solutions/habitat-monitoring", 
+        element: <Suspense fallback={<div>Loading...</div>}><HabitatMonitoring /></Suspense> 
+      },
+      { 
+        path: "case-study", 
+        element: <CaseStudy /> 
+      },
+      { 
+        path: "case-studies/housing-development", 
+        element: <Suspense fallback={<div>Loading...</div>}><HousingDevelopment /></Suspense> 
+      },
+      { 
+        path: "case-studies/infrastructure-project", 
+        element: <Suspense fallback={<div>Loading...</div>}><InfrastructureProject /></Suspense> 
+      },
+      { 
+        path: "pricing", 
+        element: <Pricing /> 
+      },
+      { 
+        path: "resources", 
+        element: <Resources /> 
+      },
+      { 
+        path: "contact", 
+        element: <Contact /> 
+      },
+      { 
+        path: "auth", 
+        element: <Auth /> 
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      { 
+        index: true, 
+        element: <Overview /> 
+      },
+      { 
+        path: "classification", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Classification /></Suspense> 
+      },
+      { 
+        path: "environment", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Environment /></Suspense> 
+      },
+      { 
+        path: "map", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Map /></Suspense> 
+      },
+      { 
+        path: "audio-library", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><AudioLibrary /></Suspense> 
+      },
+      { 
+        path: "reports", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Reports /></Suspense> 
+      },
+      { 
+        path: "admin", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Admin /></Suspense> 
+      },
+    ],
+  },
+]);
+
+function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Index />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="/solutions" element={<Solutions />} />
-              <Route path="/solutions/habitat-monitoring" element={<HabitatMonitoring />} />
-              <Route path="/solutions/compliance-reporting" element={<ComplianceReporting />} />
-              <Route path="/solutions/for-developers" element={<ForDevelopers />} />
-              <Route path="/solutions/for-land-managers" element={<ForLandManagers />} />
-              <Route path="/solutions/for-ecologists" element={<ForEcologists />} />
-              <Route path="/case-study" element={<CaseStudy />} />
-              <Route path="/case-study/housing-development" element={<HousingDevelopment />} />
-              <Route path="/case-study/infrastructure-project" element={<InfrastructureProject />} />
-              <Route path="/resources" element={<Resources />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <>
+      <RouterProvider router={router} />
+      <Toaster />
+    </>
   );
-};
+}
 
 export default App;

@@ -1,5 +1,5 @@
 
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
@@ -19,6 +19,13 @@ const Environment = () => {
     { date: "2023-05-04", value: 45 },
     { date: "2023-05-05", value: 42 },
   ];
+
+  // Combine temperature and activity data for the dual axis chart
+  const combinedData = temperatureData.map((temp, index) => ({
+    date: temp.date,
+    temperature: temp.value,
+    activity: Math.floor(Math.random() * 15) + 1 // Random activity data between 1-15
+  }));
 
   return (
     <div className="p-8">
@@ -93,18 +100,27 @@ const Environment = () => {
         </div>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={temperatureData}>
+            <LineChart data={combinedData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
-              <YAxis yAxisId="left" domain={[0, 30]} tickFormatter={(value) => `${value}°C`} />
-              <YAxis yAxisId="right" orientation="right" domain={[0, 20]} />
+              <YAxis 
+                yAxisId="left" 
+                domain={[0, 30]} 
+                tickFormatter={(value) => `${value}°C`} 
+              />
+              <YAxis 
+                yAxisId="right" 
+                orientation="right" 
+                domain={[0, 20]} 
+              />
               <Tooltip />
               <Line 
                 yAxisId="left"
                 type="monotone" 
-                dataKey="value" 
+                dataKey="temperature" 
                 stroke="#818cf8" 
                 strokeWidth={2}
+                name="Temperature"
               />
               <Line 
                 yAxisId="right"
@@ -112,6 +128,7 @@ const Environment = () => {
                 dataKey="activity" 
                 stroke="#059669" 
                 strokeWidth={2}
+                name="Bat Activity"
               />
             </LineChart>
           </ResponsiveContainer>

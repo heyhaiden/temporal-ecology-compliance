@@ -1,38 +1,37 @@
+
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { Battery, Wifi, AlertTriangle, ThermometerIcon, Signal } from "lucide-react";
+import { Battery, Wifi, AlertTriangle } from "lucide-react";
+import { toast } from "sonner";
 
 const Overview = () => {
-  const stats = {
+  const [stats, setStats] = useState({
     detections: "1,234",
     temperature: "22°C",
     humidity: "68%",
     uptime: "99.9%"
+  });
+
+  useEffect(() => {
+    // Load dashboard data
+    loadDashboardData();
+  }, []);
+
+  const loadDashboardData = () => {
+    try {
+      // This function just sets our predefined stats
+      setStats({
+        detections: "1,234",
+        temperature: "22°C",
+        humidity: "68%",
+        uptime: "99.9%"
+      });
+    } catch (error) {
+      console.error("Error loading dashboard data:", error);
+      toast.error("Could not load dashboard data");
+    }
   };
-
-  const alerts = [
-    { message: "Sensor 3 offline for 2 hours", icon: Wifi, iconColor: "text-red-500" },
-    { message: "Sensor 2 battery low (15%)", icon: Battery, iconColor: "text-amber-500" },
-    { message: "Unusual spike in bat activity", icon: AlertTriangle, iconColor: "text-emerald-500" },
-  ];
-
-  const classifications = [
-    { name: "Common Pipistrelle", time: "2 mins ago", confidence: 92 },
-    { name: "Soprano Pipistrelle", time: "5 mins ago", confidence: 87 },
-    { name: "Noctule", time: "12 mins ago", confidence: 79 },
-    { name: "Brown Long-eared Bat", time: "18 mins ago", confidence: 85 },
-    { name: "European Robin", time: "25 mins ago", confidence: 91 },
-  ];
-
-  const environmentData = [
-    { time: "00:00", value: 400 },
-    { time: "04:00", value: 600 },
-    { time: "08:00", value: 800 },
-    { time: "12:00", value: 1000 },
-    { time: "16:00", value: 800 },
-    { time: "20:00", value: 600 },
-    { time: "24:00", value: 400 },
-  ];
 
   return (
     <div className="p-8">
@@ -153,5 +152,29 @@ const Overview = () => {
     </div>
   );
 };
+
+const alerts = [
+  { message: "Sensor 3 offline for 2 hours", icon: Wifi, iconColor: "text-red-500" },
+  { message: "Sensor 2 battery low (15%)", icon: Battery, iconColor: "text-amber-500" },
+  { message: "Unusual spike in bat activity", icon: AlertTriangle, iconColor: "text-emerald-500" },
+];
+
+const classifications = [
+  { name: "Common Pipistrelle", time: "2 mins ago", confidence: 92 },
+  { name: "Soprano Pipistrelle", time: "5 mins ago", confidence: 87 },
+  { name: "Noctule", time: "12 mins ago", confidence: 79 },
+  { name: "Brown Long-eared Bat", time: "18 mins ago", confidence: 85 },
+  { name: "European Robin", time: "25 mins ago", confidence: 91 },
+];
+
+const environmentData = [
+  { time: "00:00", value: 400 },
+  { time: "04:00", value: 600 },
+  { time: "08:00", value: 800 },
+  { time: "12:00", value: 1000 },
+  { time: "16:00", value: 800 },
+  { time: "20:00", value: 600 },
+  { time: "24:00", value: 400 },
+];
 
 export default Overview;
