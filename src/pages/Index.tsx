@@ -1,6 +1,7 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, LineChart, Cloud, FileText } from "lucide-react";
+import { ArrowRight, Check, LineChart, Cloud, FileText, LayoutDashboard } from "lucide-react";
 
 const Index = () => {
   return (
@@ -17,15 +18,15 @@ const Index = () => {
                 Simplify your biodiversity net gain compliance with our automated monitoring and reporting solutions. Built for the UK's evolving environmental regulations.
               </p>
               <div className="mt-8 flex gap-x-6">
-                <Link to="/solutions">
+                <Link to="/dashboard">
                   <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    View Dashboard
+                    <LayoutDashboard className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <Link to="/case-study">
+                <Link to="/solutions">
                   <Button size="lg" variant="outline">
-                    Case Studies
+                    Learn More
                   </Button>
                 </Link>
               </div>
@@ -59,6 +60,35 @@ const Index = () => {
                 <p className="mt-4 flex-1 text-sm text-gray-600">{feature.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Demo Dashboard Section */}
+      <section className="py-12 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-medium tracking-tight text-gray-900 sm:text-4xl">
+              Try Our Interactive Dashboard
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Experience our powerful monitoring platform with real-time data visualization.
+            </p>
+            <div className="mt-8">
+              <Link to="/dashboard">
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+                  Access Dashboard Demo
+                  <LayoutDashboard className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+            <img 
+              src="/placeholder.svg" 
+              alt="Dashboard Preview" 
+              className="w-full h-auto object-cover"
+            />
           </div>
         </div>
       </section>
@@ -135,10 +165,16 @@ const Index = () => {
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-emerald-100">
               Join thousands of satisfied customers who have simplified their environmental compliance process with StreamLine.
             </p>
-            <div className="mt-10">
-              <Link to="/contact">
+            <div className="mt-10 flex justify-center gap-6">
+              <Link to="/dashboard">
                 <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
-                  Get Started Now
+                  Try Dashboard Demo
+                  <LayoutDashboard className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button size="lg" variant="outline" className="text-white border-white hover:bg-emerald-700">
+                  Contact Us
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
