@@ -1,3 +1,4 @@
+
 import { CircleDollarSign, Cloud, CpuIcon, FileCheck, LineChart, ShieldCheck, LayoutDashboard, Users, Leaf, Code2, ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -124,15 +125,10 @@ const Solutions = () => {
           <p className="mx-auto max-w-xl text-lg leading-8 text-emerald-100 mb-8">
             Get started with our integrated solutions and revolutionize your approach to biodiversity net gain.
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center">
             <Link to="/contact">
               <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
                 Schedule Demo
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-emerald-700">
-                Contact Sales
               </Button>
             </Link>
           </div>
@@ -154,19 +150,19 @@ const roleBasedSolutions = [
     title: "For Developers",
     description: "Streamline BNG compliance in your development projects with integrated planning and monitoring tools.",
     icon: Code2,
-    link: "/solutions/for-developers"
+    link: "/solutions/developers"
   },
   {
     title: "For Land Managers",
     description: "Comprehensive tools for managing and monitoring biodiversity on your sites.",
     icon: Users,
-    link: "/solutions/for-land-managers"
+    link: "/solutions/land-managers"
   },
   {
     title: "For Ecologists",
     description: "Advanced tools for biodiversity assessment and habitat analysis.",
     icon: Leaf,
-    link: "/solutions/for-ecologists"
+    link: "/solutions/ecologists"
   }
 ];
 
