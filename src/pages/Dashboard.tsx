@@ -4,13 +4,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Bird, ThermometerIcon, Map, FileAudio, FileText, Settings, Laptop, CloudSunRain } from "lucide-react";
 import { toast } from "sonner";
-import { Link, useLocation, Outlet } from "react-router-dom";
+import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState("Demo User");
   const location = useLocation();
+  const navigate = useNavigate();
   
   // Load user data
   useEffect(() => {
@@ -36,9 +37,9 @@ const Dashboard = () => {
   
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    // Keep the user on dashboard page, don't redirect
+    // Redirect to the main page after signing out
+    navigate("/");
     toast.success("Signed out successfully");
-    setUserName("Demo User");
   };
 
   // Improved helper function to determine if a link is active
