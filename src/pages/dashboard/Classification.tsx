@@ -402,7 +402,29 @@ const Classification = () => {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-semibold text-gray-900 mb-8">Classification</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-2xl font-semibold text-gray-900">Classification</h1>
+        
+        {/* View mode toggle moved outside of card to upper right */}
+        <div className="flex border rounded-md">
+          <Button
+            variant={viewMode === "list" ? "default" : "ghost"}
+            size="sm"
+            className="rounded-r-none"
+            onClick={() => setViewMode("list")}
+          >
+            <List className="h-4 w-4 mr-1" /> List
+          </Button>
+          <Button
+            variant={viewMode === "grid" ? "default" : "ghost"}
+            size="sm"
+            className="rounded-l-none"
+            onClick={() => setViewMode("grid")}
+          >
+            <Grid className="h-4 w-4 mr-1" /> Grid
+          </Button>
+        </div>
+      </div>
       
       <div className="mb-6">
         <Card className="p-6">
@@ -445,25 +467,6 @@ const Classification = () => {
                     <ArrowUp className="h-4 w-4" /> : 
                     <ArrowDown className="h-4 w-4" />
                   }
-                </Button>
-              </div>
-
-              <div className="flex border rounded-md">
-                <Button
-                  variant={viewMode === "list" ? "default" : "ghost"}
-                  size="sm"
-                  className="rounded-r-none"
-                  onClick={() => setViewMode("list")}
-                >
-                  <List className="h-4 w-4 mr-1" /> List
-                </Button>
-                <Button
-                  variant={viewMode === "grid" ? "default" : "ghost"}
-                  size="sm"
-                  className="rounded-l-none"
-                  onClick={() => setViewMode("grid")}
-                >
-                  <Grid className="h-4 w-4 mr-1" /> Grid
                 </Button>
               </div>
             </div>
