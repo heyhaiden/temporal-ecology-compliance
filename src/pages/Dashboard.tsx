@@ -1,45 +1,28 @@
-
 import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Bird, ThermometerIcon, Map, FileAudio, FileText, Settings, Laptop, CloudSunRain } from "lucide-react";
-import { toast } from "sonner";
-import { Link, useLocation, Outlet } from "react-router-dom";
+import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
+import { useAuth } from "@/contexts/AuthProvider"; // Import the auth hook
 
 const Dashboard = () => {
-  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const { user, loading, signOut } = useAuth(); // Use auth context
   const [userName, setUserName] = useState("Demo User");
   const location = useLocation();
   
-  // Load user data
   useEffect(() => {
-    const loadUserData = async () => {
-      try {
-        // Try to get user session if available
-        const { data: { session } } = await supabase.auth.getSession();
-        
-        // Set username from session if available, otherwise use demo user
-        if (session?.user) {
-          setUserName(session.user.email?.split('@')[0] || "User");
-        }
-      } catch (error) {
-        console.error("Error loading user data:", error);
-        toast.error("Could not load user data");
-      } finally {
-        setLoading(false);
-      }
-    };
+    // If not authenticated and not loading, redirect to login
+    if (!loading && !user) {
+      navigate('/auth');
+    }
     
-    loadUserData();
-  }, []);
-  
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    // Keep the user on dashboard page, don't redirect
-    toast.success("Signed out successfully");
-    setUserName("Demo User");
-  };
+    // Update username from auth context
+    if (user) {
+      const displayName = user.fullName || user.email?.split('@')[0] || "User";
+      setUserName(displayName);
+    }
+  }, [user, loading, navigate]);
 
   // Improved helper function to determine if a link is active
   const isLinkActive = (path) => {
@@ -78,7 +61,7 @@ const Dashboard = () => {
               {userName.charAt(0).toUpperCase()}
             </div>
             <span className="text-sm font-medium">{userName}</span>
-            <Button variant="ghost" size="sm" onClick={handleSignOut}>
+            <Button variant="ghost" size="sm" onClick={signOut}>
               Sign out
             </Button>
           </div>
