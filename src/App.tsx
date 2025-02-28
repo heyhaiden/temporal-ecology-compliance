@@ -1,3 +1,4 @@
+
 import { Suspense, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
@@ -12,7 +13,6 @@ import Auth from "@/pages/Auth";
 import NotFound from "@/pages/NotFound";
 import Dashboard from "@/pages/Dashboard";
 import Overview from "@/pages/dashboard/Overview";
-import { AuthProvider } from "@/contexts/AuthProvider";
 
 // Lazy-loaded dashboard pages
 const Classification = lazy(() => import("@/pages/dashboard/Classification"));
@@ -34,123 +34,114 @@ const HabitatMonitoring = lazy(() => import("@/pages/solutions/HabitatMonitoring
 const HousingDevelopment = lazy(() => import("@/pages/case-studies/HousingDevelopment"));
 const InfrastructureProject = lazy(() => import("@/pages/case-studies/InfrastructureProject"));
 
-// Create a router wrapper component that provides auth context
-const Router = () => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      errorElement: <NotFound />,
-      children: [
-        { 
-          index: true, 
-          element: <Index /> 
-        },
-        { 
-          path: "solutions", 
-          element: <Solutions /> 
-        },
-        { 
-          path: "solutions/developers", 
-          element: <Suspense fallback={<div>Loading...</div>}><ForDevelopers /></Suspense> 
-        },
-        { 
-          path: "solutions/ecologists", 
-          element: <Suspense fallback={<div>Loading...</div>}><ForEcologists /></Suspense> 
-        },
-        { 
-          path: "solutions/land-managers", 
-          element: <Suspense fallback={<div>Loading...</div>}><ForLandManagers /></Suspense> 
-        },
-        { 
-          path: "solutions/compliance-reporting", 
-          element: <Suspense fallback={<div>Loading...</div>}><ComplianceReporting /></Suspense> 
-        },
-        { 
-          path: "solutions/habitat-monitoring", 
-          element: <Suspense fallback={<div>Loading...</div>}><HabitatMonitoring /></Suspense> 
-        },
-        { 
-          path: "case-study", 
-          element: <CaseStudy /> 
-        },
-        { 
-          path: "case-studies/housing-development", 
-          element: <Suspense fallback={<div>Loading...</div>}><HousingDevelopment /></Suspense> 
-        },
-        { 
-          path: "case-studies/infrastructure-project", 
-          element: <Suspense fallback={<div>Loading...</div>}><InfrastructureProject /></Suspense> 
-        },
-        { 
-          path: "pricing", 
-          element: <Pricing /> 
-        },
-        { 
-          path: "resources", 
-          element: <Resources /> 
-        },
-        { 
-          path: "contact", 
-          element: <Contact /> 
-        },
-        { 
-          path: "auth", 
-          element: <Auth /> 
-        },
-      ],
-    },
-    {
-      path: "/dashboard",
-      element: <Dashboard />,
-      children: [
-        { 
-          index: true, 
-          element: <Overview /> 
-        },
-        { 
-          path: "devices", 
-          element: <Suspense fallback={<div className="p-8">Loading...</div>}><Devices /></Suspense> 
-        },
-        { 
-          path: "classification", 
-          element: <Suspense fallback={<div className="p-8">Loading...</div>}><Classification /></Suspense> 
-        },
-        { 
-          path: "environment", 
-          element: <Suspense fallback={<div className="p-8">Loading...</div>}><Environment /></Suspense> 
-        },
-        { 
-          path: "map", 
-          element: <Suspense fallback={<div className="p-8">Loading...</div>}><Map /></Suspense> 
-        },
-        { 
-          path: "audio-library", 
-          element: <Suspense fallback={<div className="p-8">Loading...</div>}><AudioLibrary /></Suspense> 
-        },
-        { 
-          path: "reports", 
-          element: <Suspense fallback={<div className="p-8">Loading...</div>}><Reports /></Suspense> 
-        },
-        { 
-          path: "admin", 
-          element: <Suspense fallback={<div className="p-8">Loading...</div>}><Admin /></Suspense> 
-        },
-      ],
-    },
-  ]);
-
-  return (
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  );
-};
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <NotFound />,
+    children: [
+      { 
+        index: true, 
+        element: <Index /> 
+      },
+      { 
+        path: "solutions", 
+        element: <Solutions /> 
+      },
+      { 
+        path: "solutions/developers", 
+        element: <Suspense fallback={<div>Loading...</div>}><ForDevelopers /></Suspense> 
+      },
+      { 
+        path: "solutions/ecologists", 
+        element: <Suspense fallback={<div>Loading...</div>}><ForEcologists /></Suspense> 
+      },
+      { 
+        path: "solutions/land-managers", 
+        element: <Suspense fallback={<div>Loading...</div>}><ForLandManagers /></Suspense> 
+      },
+      { 
+        path: "solutions/compliance-reporting", 
+        element: <Suspense fallback={<div>Loading...</div>}><ComplianceReporting /></Suspense> 
+      },
+      { 
+        path: "solutions/habitat-monitoring", 
+        element: <Suspense fallback={<div>Loading...</div>}><HabitatMonitoring /></Suspense> 
+      },
+      { 
+        path: "case-study", 
+        element: <CaseStudy /> 
+      },
+      { 
+        path: "case-studies/housing-development", 
+        element: <Suspense fallback={<div>Loading...</div>}><HousingDevelopment /></Suspense> 
+      },
+      { 
+        path: "case-studies/infrastructure-project", 
+        element: <Suspense fallback={<div>Loading...</div>}><InfrastructureProject /></Suspense> 
+      },
+      { 
+        path: "pricing", 
+        element: <Pricing /> 
+      },
+      { 
+        path: "resources", 
+        element: <Resources /> 
+      },
+      { 
+        path: "contact", 
+        element: <Contact /> 
+      },
+      { 
+        path: "auth", 
+        element: <Auth /> 
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      { 
+        index: true, 
+        element: <Overview /> 
+      },
+      { 
+        path: "devices", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Devices /></Suspense> 
+      },
+      { 
+        path: "classification", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Classification /></Suspense> 
+      },
+      { 
+        path: "environment", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Environment /></Suspense> 
+      },
+      { 
+        path: "map", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Map /></Suspense> 
+      },
+      { 
+        path: "audio-library", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><AudioLibrary /></Suspense> 
+      },
+      { 
+        path: "reports", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Reports /></Suspense> 
+      },
+      { 
+        path: "admin", 
+        element: <Suspense fallback={<div className="p-8">Loading...</div>}><Admin /></Suspense> 
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
     <>
-      <Router />
+      <RouterProvider router={router} />
       <Toaster />
     </>
   );

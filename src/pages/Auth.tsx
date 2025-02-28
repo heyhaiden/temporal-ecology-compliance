@@ -1,12 +1,13 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from "@/contexts/AuthProvider"; // Import the auth hook
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Auth = () => {
   const navigate = useNavigate();
-  const { user, loading, signIn, signUp } = useAuth(); // Use the auth hook
   const [isLoading, setIsLoading] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
@@ -14,11 +15,25 @@ const Auth = () => {
   const [fullName, setFullName] = useState('');
 
   useEffect(() => {
-    // If user is already authenticated, redirect to dashboard
-    if (user && !loading) {
-      navigate('/dashboard');
-    }
-  }, [user, loading, navigate]);
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        navigate('/dashboard');
+      }
+    };
+    
+    checkSession();
+    
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        navigate('/dashboard');
+      }
+    });
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, [navigate]);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,16 +41,33 @@ const Auth = () => {
     
     try {
       if (isLogin) {
-        // Handle login using context
-        await signIn(email, password);
+        // Handle login
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        
+        if (error) throw error;
       } else {
-        // Handle signup using context
-        await signUp(email, password, fullName);
-        setIsLogin(true); // Switch to login form after successful signup
+        // Handle signup
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: fullName,
+            }
+          }
+        });
+        
+        if (error) throw error;
+        
+        toast.success("Account created! You can now sign in.");
+        setIsLogin(true);
       }
-    } catch (error) {
-      // Error handling is done in the context
+    } catch (error: any) {
       console.error('Authentication error:', error);
+      toast.error(error.message || "Authentication failed");
     } finally {
       setIsLoading(false);
     }
