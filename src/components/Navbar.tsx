@@ -56,7 +56,7 @@ const Navbar = () => {
                   <div className="pr-4">
                     <div className="space-y-2">
                       <DropdownMenuItem>
-                        <Link to="/solutions/for-developers" className="w-full flex items-center space-x-2 py-2">
+                        <Link to="/solutions/developers" className="w-full flex items-center space-x-2 py-2">
                           <Building2 className="h-5 w-5 text-emerald-600" />
                           <div>
                             <p className="font-medium">For Developers</p>
@@ -65,7 +65,7 @@ const Navbar = () => {
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link to="/solutions/for-land-managers" className="w-full flex items-center space-x-2 py-2">
+                        <Link to="/solutions/land-managers" className="w-full flex items-center space-x-2 py-2">
                           <Users className="h-5 w-5 text-emerald-600" />
                           <div>
                             <p className="font-medium">For Land Managers</p>
@@ -74,7 +74,7 @@ const Navbar = () => {
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link to="/solutions/for-ecologists" className="w-full flex items-center space-x-2 py-2">
+                        <Link to="/solutions/ecologists" className="w-full flex items-center space-x-2 py-2">
                           <Leaf className="h-5 w-5 text-emerald-600" />
                           <div>
                             <p className="font-medium">For Ecologists</p>
