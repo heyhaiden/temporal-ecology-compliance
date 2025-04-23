@@ -24,8 +24,10 @@ Temporal is a sophisticated environmental monitoring platform that helps develop
   - Report generation and export
 
 ### Dashboard Features
-![Dashboard](/lovable-uploads/add-screenshot-here)
-  
+![Dashboard Overview](/lovable-uploads/dashboard-overview-screenshot.png)
+Comprehensive dashboard providing real-time insights into environmental monitoring, device status, and species classification.
+
+Key Dashboard Features:
 - **Audio Classification**
   - AI-powered species identification
   - Waveform visualization
@@ -61,9 +63,13 @@ Modern and responsive landing page showcasing our environmental monitoring solut
 ![Solutions Page](/lovable-uploads/249881cd-11b1-4d6d-9745-c955bb2ce7b0.png)
 Detailed solutions page featuring our offerings for different stakeholders.
 
+### Dashboard
+![Dashboard Overview](/lovable-uploads/dashboard-overview-screenshot.png)
+Intuitive dashboard with real-time environmental and device monitoring.
 
+![Classification View](/lovable-uploads/dashboard-classification-screenshot.png)
+Advanced audio classification interface with AI-powered species identification.
 
 ---
 
 *Note: This is a portfolio project demonstrating full-stack development capabilities using modern web technologies. The data shown in the screenshots is simulated for demonstration purposes.*
-
