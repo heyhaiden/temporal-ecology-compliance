@@ -59,9 +59,6 @@ Key Dashboard Features:
 ![Landing Page](public/lovable-uploads/temporal-home.png)
 Modern and responsive landing page showcasing our environmental monitoring solutions.
 
-![Solutions Page](public/lovable-uploads/249881cd-11b1-4d6d-9745-c955bb2ce7b0.png)
-Detailed solutions page featuring our offerings for different stakeholders.
-
 ### Dashboard
 ![Dashboard Overview](public/lovable-uploads/dashboard-overview.png)
 Intuitive dashboard with real-time environmental and device monitoring.
