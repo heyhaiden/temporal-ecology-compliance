@@ -1,6 +1,6 @@
 # Temporal - Ecology Compliance Platform 🦇 🌿
 
-![Landing Page](/lovable-uploads/temporal-home.png)
+![Landing Page](public/lovable-uploads/temporal-home.png)
 
 Temporal is a sophisticated environmental monitoring platform that helps developers, land managers, and ecologists track and analyze biodiversity data. Built with modern web technologies, it provides real-time habitat monitoring and automated compliance reporting for biodiversity net gain (BNG) requirements.
 
@@ -23,7 +23,7 @@ Temporal is a sophisticated environmental monitoring platform that helps develop
   - Report generation and export
 
 ### Dashboard Features
-![Dashboard Overview](/lovable-uploads/dashboard-overview.png)
+![Dashboard Overview](public/lovable-uploads/dashboard-overview.png)
 Comprehensive dashboard providing real-time insights into environmental monitoring, device status, and species classification.
 
 Key Dashboard Features:
@@ -56,23 +56,23 @@ Key Dashboard Features:
 ## 📸 Screenshots
 
 ### Public Pages
-![Landing Page](/lovable-uploads/temporal-home.png)
+![Landing Page](public/lovable-uploads/temporal-home.png)
 Modern and responsive landing page showcasing our environmental monitoring solutions.
 
-![Solutions Page](/lovable-uploads/249881cd-11b1-4d6d-9745-c955bb2ce7b0.png)
+![Solutions Page](public/lovable-uploads/249881cd-11b1-4d6d-9745-c955bb2ce7b0.png)
 Detailed solutions page featuring our offerings for different stakeholders.
 
 ### Dashboard
-![Dashboard Overview](/lovable-uploads/dashboard-overview.png)
+![Dashboard Overview](public/lovable-uploads/dashboard-overview.png)
 Intuitive dashboard with real-time environmental and device monitoring.
 
-![Classification View](/lovable-uploads/dashboard-classification.png)
+![Classification View](public/lovable-uploads/dashboard-classification.png)
 Advanced audio classification interface with AI-powered species identification.
 
-![Audio Library](/lovable-uploads/dashboard-audiolibrary.png)
+![Audio Library](public/lovable-uploads/dashboard-audiolibrary.png)
 Comprehensive audio library for managing and analyzing recorded wildlife sounds.
 
-![Device Management](/lovable-uploads/dashboard-devices.png)
+![Device Management](public/lovable-uploads/dashboard-devices.png)
 Real-time device monitoring and management interface.
 
 ---
