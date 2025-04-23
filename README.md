@@ -1,69 +1,101 @@
-# Welcome to your Lovable project
 
-## Project info
+# Temporal - Biodiversity Monitoring Platform 🦇 🌿
 
-**URL**: https://lovable.dev/projects/a52155d2-10f4-4912-8ce5-c7b6a5731d68
+![Temporal Logo](/lovable-uploads/35e560b4-c9cc-4388-80b3-722cfa45b123.png)
 
-## How can I edit this code?
+Temporal is a sophisticated environmental monitoring platform that helps developers, land managers, and ecologists track and analyze biodiversity data. Built with modern web technologies, it provides real-time habitat monitoring and automated compliance reporting for biodiversity net gain (BNG) requirements.
 
-There are several ways of editing your application.
+## 🌟 Features
 
-**Use Lovable**
+### Public Features
+- **Solutions for Multiple Stakeholders**
+  - Developers: Construction & planning tools
+  - Land Managers: Site management tools
+  - Ecologists: Biodiversity assessment tools
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a52155d2-10f4-4912-8ce5-c7b6a5731d68) and start prompting.
+- **Real-time Habitat Monitoring**
+  - Live data collection from field sensors
+  - Automated species detection
+  - Environmental condition tracking
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Compliance Reporting**
+  - Automated BNG calculations
+  - Regulatory compliance checks
+  - Report generation and export
 
-**Use your preferred IDE**
+### Dashboard Features
+- **Audio Classification**
+  - AI-powered species identification
+  - Waveform visualization
+  - Manual verification interface
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Environmental Monitoring**
+  - Temperature and humidity tracking
+  - Correlation analysis with wildlife activity
+  - Historical data visualization
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Device Management**
+  - Real-time device status monitoring
+  - Battery level tracking
+  - Connection strength monitoring
 
-Follow these steps:
+## 🛠️ Technology Stack
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Frontend**: React + TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Charts**: Recharts
+- **State Management**: TanStack Query
+- **Routing**: React Router
+- **Authentication**: Supabase Auth
+- **Database**: Supabase PostgreSQL
+- **Real-time Updates**: Supabase Realtime
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 📸 Screenshots
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Public Pages
+![Homepage Screenshot](/path/to/homepage-screenshot.png)
+Modern and responsive landing page showcasing our environmental monitoring solutions.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+![Solutions Page](/path/to/solutions-screenshot.png)
+Detailed breakdown of our offerings for different stakeholders.
+
+### Dashboard
+![Classification Dashboard](/path/to/classification-screenshot.png)
+AI-powered species classification system with manual verification capabilities.
+
+![Environmental Monitoring](/path/to/environment-screenshot.png)
+Real-time environmental data visualization and analysis tools.
+
+## 🚀 Getting Started
+
+1. Clone the repository
+```bash
+git clone [repository-url]
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start the development server
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 📝 License
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-**Use GitHub Codespaces**
+## 🤝 Contributing
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](issues-link).
 
-## What technologies are used for this project?
+## 👥 Team
 
-This project is built with .
+Built with ❤️ by [Your Name/Team Name]
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+*Note: This is a portfolio project built to demonstrate full-stack development capabilities. The data shown in the screenshots is simulated for demonstration purposes.*
 
-Simply open [Lovable](https://lovable.dev/projects/a52155d2-10f4-4912-8ce5-c7b6a5731d68) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
