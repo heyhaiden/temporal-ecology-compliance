@@ -63,14 +63,14 @@ Modern and responsive landing page showcasing our environmental monitoring solut
 ![Dashboard Overview](public/lovable-uploads/dashboard-overview.png)
 Intuitive dashboard with real-time environmental and device monitoring.
 
+![Device Management](public/lovable-uploads/dashboard-devices.png)
+Real-time device monitoring and management interface.
+
 ![Classification View](public/lovable-uploads/dashboard-classification.png)
 Advanced audio classification interface with AI-powered species identification.
 
 ![Audio Library](public/lovable-uploads/dashboard-audiolibrary.png)
 Comprehensive audio library for managing and analyzing recorded wildlife sounds.
-
-![Device Management](public/lovable-uploads/dashboard-devices.png)
-Real-time device monitoring and management interface.
 
 ---
 
