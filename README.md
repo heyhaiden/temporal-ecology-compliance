@@ -53,35 +53,35 @@ Temporal is a sophisticated environmental monitoring platform that helps develop
 ## 📸 Screenshots
 
 ### Public Pages
-![Homepage Screenshot](/path/to/homepage-screenshot.png)
+![Landing Page](/lovable-uploads/242c82b9-1801-4d36-b154-c2134253ae1e.png)
 Modern and responsive landing page showcasing our environmental monitoring solutions.
 
-![Solutions Page](/path/to/solutions-screenshot.png)
-Detailed breakdown of our offerings for different stakeholders.
-
-### Dashboard
-![Classification Dashboard](/path/to/classification-screenshot.png)
-AI-powered species classification system with manual verification capabilities.
-
-![Environmental Monitoring](/path/to/environment-screenshot.png)
-Real-time environmental data visualization and analysis tools.
+![Solutions Page](/lovable-uploads/249881cd-11b1-4d6d-9745-c955bb2ce7b0.png)
+Detailed solutions page featuring our offerings for different stakeholders.
 
 ## 🚀 Getting Started
 
 1. Clone the repository
-```bash
+\`\`\`bash
 git clone [repository-url]
-```
+\`\`\`
 
 2. Install dependencies
-```bash
+\`\`\`bash
 npm install
-```
+\`\`\`
 
-3. Start the development server
-```bash
+3. Set up environment variables
+Create a \`.env\` file in the root directory and add:
+\`\`\`bash
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+\`\`\`
+
+4. Start the development server
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
 ## 📝 License
 
@@ -89,13 +89,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](issues-link).
+We welcome contributions! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
 ## 👥 Team
 
-Built with ❤️ by [Your Name/Team Name]
+Built with ❤️ by the Temporal Team
 
 ---
 
-*Note: This is a portfolio project built to demonstrate full-stack development capabilities. The data shown in the screenshots is simulated for demonstration purposes.*
+*Note: This is a portfolio project demonstrating full-stack development capabilities using modern web technologies. The data shown in the screenshots is simulated for demonstration purposes.*
 
